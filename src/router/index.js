@@ -3,12 +3,16 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   linkActiveClass: 'active',
+  // linkExactActiveClass: 'exact-active',
   scrollBehavior(to) {
     if (to.hash) {
       return {
         el: to.hash,
       };
     }
+    return {
+      top: 0,
+    };
   },
   routes: [
     {
@@ -35,6 +39,16 @@ const router = createRouter({
         {
           path: 'order',
           component: () => import('../views/frontend/OrderView.vue'),
+          children: [
+            {
+              path: 'info',
+              component: () => import('../views/frontend/OrderInfo.vue'),
+            },
+            {
+              path: 'checkout/:orderId',
+              component: () => import('../views/frontend/OrderCheckout.vue'),
+            },
+          ],
         },
         {
           path: 'location',

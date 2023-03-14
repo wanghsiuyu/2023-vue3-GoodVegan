@@ -1,4 +1,5 @@
 <template>
+  <VueLoading v-model:active="isLoading"></VueLoading>
   <!-- banner start-->
   <section class="mb-5 banner" style="height: 380px">
     <div class="container">
@@ -10,7 +11,7 @@
     </div>
   </section>
   <!-- banner end-->
-  <section class="container">
+  <div class="container">
     <!-- breadcrumb start-->
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb mb-5">
@@ -19,7 +20,7 @@
       </ol>
     </nav>
     <!-- breadcrumb end-->
-    <div class="row justify-content-center flex-column flex-lg-row mb-20 mb-lg-8">
+    <section class="row justify-content-center flex-column flex-lg-row mb-20 mb-lg-8">
       <div class="col-lg-4 fs-6 fs-lg-5 text-center text-lg-start">
         <img src="@/assets/image/logo1.png" alt="logo" width="100" height="100" class="mb-4" />
         <p>台南市東區樂活路 59 號</p>
@@ -40,8 +41,8 @@
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 <style lang="scss" scoped>
   .banner {
@@ -58,3 +59,18 @@
     background-position: center 0px;
   }
 </style>
+<script>
+  import { mapState, mapActions } from 'pinia';
+  import loadingStore from '@/store/loadingStore.js';
+  export default {
+    methods: {
+      ...mapActions(loadingStore, ['loading']),
+    },
+    computed: {
+      ...mapState(loadingStore, ['isLoading']),
+    },
+    mounted() {
+      this.loading();
+    },
+  };
+</script>

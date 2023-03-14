@@ -36,3 +36,23 @@
   background-color: rgba(240, 248, 236, 0.522);
   backdrop-filter: blur(6px);
 }
+@mixin block-title {
+  display: inline-block;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 84px;
+    height: 64px;
+    background-size: contain;
+    background-image: url(@/assets/image/title.svg);
+    top: -17px;
+    right: -20px;
+    z-index: -1;
+    @include mobile() {
+      width: 102px;
+      height: 77px;
+      top: -24px;
+      right: -29px;
+    }
+  }
+}

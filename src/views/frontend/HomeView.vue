@@ -1,4 +1,5 @@
 <template>
+  <VueLoading v-model:active="isLoading"></VueLoading>
   <!-- banner start-->
   <section class="mt-14 mt-lg-20">
     <div class="home-banner bg-position-center bg-size-cover bg-no-repeat d-flex flex-column justify-content-center align-items-center px-6 px-lg-0">
@@ -6,7 +7,7 @@
         <img src="@/assets/image/logo1.png" alt="logo" width="160" height="160" class="home-banner-logo mb-6" />
         <h3 class="fs-3 fs-lg-1 fw-lg-bold text-center mb-4">A Plant-based Cuisine</h3>
         <h1 class="fs-5 fs-lg-3 text-center text-gray-dark mb-8">以全植物飲食為理念的餐廳， 為您呈現最健康的蔬食饗宴。</h1>
-        <a href="#" class="btn btn-primary fs-lg-5 px-5 py-3 px-lg-6">立即訂餐</a>
+        <a href="#/products" class="btn btn-primary fs-lg-5 px-5 py-3 px-lg-6">立即訂餐</a>
       </div>
     </div>
   </section>
@@ -17,7 +18,7 @@
       <div class="text-center">
         <h2 class="block-title position-relative fs-3 fs-lg-2 fw-lg-bold mb-4 mb-lg-6">七大堅持</h2>
         <h3 class="fs-4 fs-lg-3 text-gray-dark mb-4 mb-lg-10">我們想改變您的飲食方式，提供您健康優質的膳食，這是我們對食物的七大堅持</h3>
-        <a href="#" class="btn btn-primary fs-lg-5 px-5 py-3 px-lg-6 mb-5 mb-lg-10">立即訂餐</a>
+        <a href="#/products" class="btn btn-primary fs-lg-5 px-5 py-3 px-lg-6 mb-5 mb-lg-10">立即訂餐</a>
       </div>
       <div class="row row-cols-1 row-cols-md-2 gx-lg-10">
         <div class="col">
@@ -137,7 +138,7 @@
       <SwiperHotFood></SwiperHotFood>
     </div>
     <div class="text-center">
-      <a href="#" class="btn btn-primary fs-lg-5 px-5 py-3 px-lg-6">更多餐點</a>
+      <a href="#/products" class="btn btn-primary fs-lg-5 px-5 py-3 px-lg-6">更多餐點</a>
     </div>
   </section>
   <!-- 暢銷餐點 end -->
@@ -149,10 +150,11 @@
     <div class="container">
       <SwiperComment></SwiperComment>
     </div>
+    <div id="qa"></div>
   </section>
   <!-- 好評推薦 end -->
   <!-- 常見問題 start -->
-  <section class="py-8 py-lg-20" id="qa">
+  <section class="py-8 py-lg-20">
     <div class="text-center">
       <h2 class="block-title position-relative fs-3 fs-lg-2 fw-lg-bold mb-5 mb-lg-10" style="z-index: 0">常見問題</h2>
     </div>
@@ -271,28 +273,11 @@
     }
   }
   // banner end
-  // 每個區塊 title 偽元素 start
+  // title 偽元素 start
   .block-title {
-    display: inline-block;
-    &::after {
-      content: '';
-      position: absolute;
-      width: 84px;
-      height: 64px;
-      background-size: contain;
-      background-image: url(@/assets/image/title.svg);
-      top: -17px;
-      right: -20px;
-      z-index: -1;
-      @include mobile() {
-        width: 102px;
-        height: 77px;
-        top: -24px;
-        right: -29px;
-      }
-    }
+    @include block-title();
   }
-  // 每個區塊 title 偽元素 end
+  // title 偽元素 end
   // 七大堅持 start
   .feature-bg {
     @include mobile() {
@@ -330,6 +315,9 @@
   // 常見問題 start
   .accordion-button {
     padding: 16px;
+    &:hover {
+      background-color: #f0f8ec;
+    }
     @include mobile() {
       padding: 20px 24px;
       border: 2px solid transparent;
@@ -376,10 +364,21 @@
 <script>
   import SwiperComment from '@/components/frontend/SwiperComment.vue';
   import SwiperHotFood from '@/components/frontend/SwiperHotFood.vue';
+  import { mapState, mapActions } from 'pinia';
+  import loadingStore from '@/store/loadingStore.js';
   export default {
     components: {
       SwiperComment,
       SwiperHotFood,
+    },
+    methods: {
+      ...mapActions(loadingStore, ['loading']),
+    },
+    computed: {
+      ...mapState(loadingStore, ['isLoading']),
+    },
+    mounted() {
+      this.loading();
     },
   };
 </script>

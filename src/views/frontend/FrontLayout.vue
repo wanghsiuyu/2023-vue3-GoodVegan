@@ -1,12 +1,3 @@
-<script>
-  import { RouterLink, RouterView } from 'vue-router';
-  export default {
-    components: {
-      RouterLink,
-      RouterView,
-    },
-  };
-</script>
 <template>
   <!-- navbar start-->
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-primary-light py-2 py-lg-3">
@@ -18,8 +9,9 @@
       <div class="d-flex align-items-center">
         <!--手機版 cart & login icon-->
         <div class="d-lg-none">
-          <RouterLink to="/order" class="navbar-brand">
+          <RouterLink to="/order/info" class="navbar-brand position-relative">
             <img src="../../assets/image/cart.svg" alt="cart" width="40" height="40" />
+            <span v-if="cartsTotalNum" class="position-absolute start-100 translate-middle badge rounded-pill bg-primary text-white" style="top: 6px">{{ cartsTotalNum }}</span>
           </RouterLink>
           <RouterLink to="/login" class="navbar-brand">
             <img src="../../assets/image/member.svg" alt="member" width="40" height="40" />
@@ -27,7 +19,6 @@
         </div>
         <!--漢堡按鈕-->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <!-- <span class="navbar-toggler-icon"></span> -->
           <img src="../../assets/image/menu.svg" alt="menu" width="40" height="40" />
         </button>
       </div>
@@ -35,27 +26,28 @@
       <div class="collapse navbar-collapse d-lg-flex justify-content-lg-center" id="navbarText">
         <ul class="navbar-nav mt-2 mt-lg-0">
           <li class="nav-item mb-4 mb-lg-0">
-            <a href="#" class="nav-link fs-lg-5 pt-3 mx-5 d-inline-block">關於我們</a>
+            <RouterLink to="/about" class="nav-link pt-3 mx-5 fs-lg-5 d-inline-block">關於我們</RouterLink>
           </li>
           <li class="nav-item mb-4 mb-lg-0">
-            <a href="#" class="nav-link fs-lg-5 pt-3 mx-5 d-inline-block">線上訂餐</a>
+            <RouterLink to="/products" class="nav-link fs-lg-5 pt-3 mx-5 d-inline-block">線上訂餐</RouterLink>
           </li>
           <li class="nav-item mb-4 mb-lg-0">
-            <a href="#" class="nav-link fs-lg-5 pt-3 mx-5 d-inline-block">常見問題</a>
+            <RouterLink to="/#qa" class="nav-link fs-lg-5 pt-3 mx-5 d-inline-block" exact-active-class="exact-active">常見問題</RouterLink>
           </li>
           <li class="nav-item mb-4 mb-lg-0">
-            <a href="#" class="nav-link fs-lg-5 pt-3 mx-5 d-inline-block">門市資訊</a>
+            <RouterLink to="/location" class="nav-link fs-lg-5 pt-3 mx-5 d-inline-block">門市資訊</RouterLink>
           </li>
         </ul>
       </div>
       <!--桌機版 cart & login icon-->
       <div class="d-none d-lg-block">
-        <a href="#" class="navbar-brand">
+        <RouterLink to="/order/info" class="navbar-brand position-relative">
           <img src="@/assets/image/cart.svg" alt="cart" width="40" height="40" />
-        </a>
-        <a href="#" class="navbar-brand">
+          <span v-if="cartsTotalNum" class="position-absolute start-100 translate-middle badge rounded-pill bg-primary text-white" style="top: 6px">{{ cartsTotalNum }} </span>
+        </RouterLink>
+        <RouterLink to="/login" class="navbar-brand">
           <img src="@/assets/image/member.svg" alt="member" width="40" height="40" />
-        </a>
+        </RouterLink>
       </div>
     </div>
   </nav>
@@ -67,10 +59,9 @@
   <footer class="bg-white">
     <div class="container py-8">
       <div class="d-lg-flex justify-content-between align-items-center pb-6 pb-lg-4 border-bottom">
-        <div class="d-flex flex-lg-column justify-content-between mb-8 mb-lg-0">
+        <div class="d-flex flex-lg-column justify-content-between align-items-center align-items-lg-start mb-8 mb-lg-0">
           <!-- logo -->
           <a href="#"><img src="@/assets/image/logo2.png" width="183" height="52" alt="logo" class="mb-lg-6" /></a>
-
           <!-- fb,IG,youtube -->
           <ul class="nav">
             <li class="nav-item">
@@ -93,19 +84,19 @@
         <!-- 導航選單 -->
         <ul class="nav mb-2">
           <li class="nav-item mb-6 mb-lg-0">
-            <a href="#" class="me-21 mx-lg-5 fs-lg-5 text-gray-dark d-inline-block">首頁</a>
+            <RouterLink to="/" class="me-21 mx-lg-5 fs-lg-5 text-gray-dark d-inline-block" exact-active-class="exact-active">首頁</RouterLink>
           </li>
           <li class="nav-item mb-6 mb-lg-0">
-            <a href="#" class="me-13 mx-lg-5 fs-lg-5 text-gray-dark d-inline-block">關於我們</a>
+            <RouterLink to="/about" class="me-13 mx-lg-5 fs-lg-5 text-gray-dark d-inline-block" exact-active-class="exact-active">關於我們</RouterLink>
           </li>
           <li class="nav-item mb-6 mb-lg-0">
-            <a href="#" class="fs-lg-5 text-gray-dark me-13 mx-lg-5 d-inline-block">線上訂餐</a>
+            <RouterLink to="/products" class="fs-lg-5 text-gray-dark me-13 mx-lg-5 d-inline-block" exact-active-class="exact-active">線上訂餐</RouterLink>
           </li>
           <li class="nav-item mb-6 mb-lg-0">
-            <a class="fs-lg-5 text-gray-dark me-13 mx-lg-5 d-inline-block" href="#">門市資訊</a>
+            <RouterLink to="/#qa" class="fs-lg-5 text-gray-dark me-13 mx-lg-5 d-inline-block" exact-active-class="exact-active">常見問題</RouterLink>
           </li>
           <li class="nav-item mb-6 mb-lg-0">
-            <a class="fs-lg-5 text-gray-dark me-13 mx-lg-5 d-inline-block" href="#">常見問題</a>
+            <RouterLink to="/location" class="fs-lg-5 text-gray-dark me-13 mx-lg-5 d-inline-block" exact-active-class="exact-active">門市資訊</RouterLink>
           </li>
         </ul>
         <!-- 連絡資訊 -->
@@ -138,69 +129,27 @@
       height: 56px;
     }
   }
-
-  .nav-link {
-    border-bottom: 4px solid transparent;
-  }
-  .nav-link.active {
+  .nav-item .router-link-exact-active {
     border-bottom: 4px solid #a8cf45;
   }
-
-  // .border-green {
-  //   border-color: #a8cf45 !important;
-  // }
-  // .green {
-  //   color: #4f8147;
-  // }
-  // .bg-light-green {
-  //   background-color: #f0f8ec;
-  // }
-
-  // .mask {
-  //   width: 193px;
-  //   height: 200px;
-  //   overflow: hidden;
-  // }
-  // .mask img {
-  //   transition: all 0.8s ease;
-  // }
-  // .mask img:hover {
-  //   transform: scale(1.2, 1.2);
-  // }
-  // .img-cover {
-  //   object-fit: cover;
-  // }
-  // .line-clamp {
-  //   display: -webkit-box;
-  //   -webkit-box-orient: vertical;
-  //   -webkit-line-clamp: 2;
-  //   overflow: hidden;
-  // }
-  // .nav-tabs {
-  //   --bs-nav-tabs-border-width: 0px;
-  // }
-  // .nav-tabs .nav-link:focus {
-  //   border-color: transparent;
-  // }
-  // .nav-tabs .nav-link {
-  //   border-bottom: 3px solid transparent;
-  // }
-  // .nav-tabs .nav-link:hover {
-  //   border-color: #a8cf45;
-  //   transition: all 0.5s ease;
-  //   opacity: 0.8;
-  // }
-  // .nav-tabs .nav-link.active {
-  //   border-bottom: 3px solid #a8cf45;
-  // }
-  // .offcanvas.offcanvas-start {
-  //   width: 450px;
-  // }
-  // .table {
-  //   --bs-table-border-color: transparent;
-  // }
-  // .form-check-input:checked {
-  //   background-color: #4f8147;
-  //   border-color: #4f8147;
-  // }
 </style>
+<script>
+  import { RouterLink, RouterView } from 'vue-router';
+  import { mapState, mapActions } from 'pinia';
+  import cartsStore from '@/store/cartsStore.js';
+  export default {
+    components: {
+      RouterLink,
+      RouterView,
+    },
+    methods: {
+      ...mapActions(cartsStore, ['getCart']),
+    },
+    computed: {
+      ...mapState(cartsStore, ['cartsTotalNum']),
+    },
+    mounted() {
+      this.getCart();
+    },
+  };
+</script>

@@ -21,94 +21,149 @@
     </nav>
     <!-- breadcrumb end-->
     <!-- 產品列表 start-->
-    <div class="row row-cols-1 row-cols-md-2 gy-2 mb-20 mb-lg-8">
-      <template v-for="product in products" :key="product.id">
-        <div v-if="products" class="col">
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-8">
-                <div class="card-body d-flex align-items-start flex-column h-100">
-                  <RouterLink :to="`/product/${product.id}`">
-                    <h5 class="card-title">{{ product.title }}</h5>
-                    <div class="d-flex mb-2">
-                      <span v-for="feature in product.checkboxFeatures" :key="feature" class="badge me-1 green bg-light-green">{{ `${feature} ` }} </span>
+    <section class="row justify-content-center mb-5">
+      <div class="col-12">
+        <!-- 產品 nav-tabs start-->
+        <ul class="nav sticky-top bg-light mb-6 nav-tab-top" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active fs-6 fs-lg-5 text-dark px-1 mx-2" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" href="#" role="tab" aria-controls="all" aria-selected="true">
+              全部商品
+            </a>
+          </li>
+          <li v-for="tab in categoriesTabs" class="nav-item" role="presentation" :key="tab">
+            <a
+              class="nav-link fs-6 fs-lg-5 text-dark px-1 mx-2"
+              :id="`${tab[1]}-tab`"
+              data-bs-toggle="tab"
+              :data-bs-target="`#${tab[1]}`"
+              href="#"
+              role="tab"
+              aria-controls="`${tab[1]}`"
+              aria-selected="false"
+            >
+              {{ tab[0] }}
+            </a>
+          </li>
+        </ul>
+        <!-- 產品 nav-tabs end-->
+        <!-- 產品 nav-tabs-content start-->
+        <div class="tab-content" id="myTabContent">
+          <!-- 全部商品 -->
+          <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-5">
+              <template v-for="product in products" :key="product.id">
+                <div v-if="products" class="col">
+                  <div class="position-relative hover-show-btn">
+                    <div class="hover-img-mask">
+                      <img :src="product.imageUrl" :alt="product.title" class="w-100 d-block rounded-3 object-fit-cover mb-3" height="240" />
+                      <button
+                        type="button"
+                        class="add-to-cart-btn btn btn-primary position-absolute bottom-0 start-50 translate-middle py-3 fs-5"
+                        :disabled="loadingStatus === product.id"
+                        @click="addToCart(product.id)"
+                      >
+                        <i class="fas fa-spinner fa-pulse me-2" v-if="loadingStatus === product.id"></i>
+                        <span>加入購物車</span>
+                      </button>
                     </div>
-                    <small class="card-text line-clamp">{{ product.description }}</small>
-                  </RouterLink>
-                  <div class="d-flex align-items-center mt-auto">
-                    <a href="#" class="link-secondary me-2" title="加入購物車" @click.prevent="addToCart(product.id)">
-                      <i class="fas fa-spinner fa-pulse" v-if="loadingStatus === product.id"></i>
-                      <span v-else class="material-icons fs-2 green"> add_box </span>
-                    </a>
-                    <small class="me-2 text-secondary"
-                      ><del>NT${{ product.origin_price }}</del></small
-                    >
-                    <p class="fs-5 text-bold mb-0 green">NT${{ product.price }}</p>
                   </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="mask rounded-end">
                   <RouterLink :to="`/product/${product.id}`">
-                    <img :src="product.imageUrl" width="200" height="200" class="rounded-end img-cover" :alt="product.title" />
+                    <h5 class="mb-2 mb-lg-3">
+                      <span v-for="feature in product.checkboxFeatures" :key="feature">
+                        <span v-if="feature === '純素'" class="badge fs-6 bg-primary-light text-primary px-2 py-1 me-1 me-lg-2">{{ feature }}</span>
+                        <span v-if="feature === '有機'" class="badge fs-6 px-2 py-1 me-1 me-lg-2" style="color: #2d9449; background-color: #ecf8f4">{{ feature }}</span>
+                        <span v-if="feature === '無麩質'" class="badge fs-6 px-2 py-1 me-1 me-lg-2" style="color: #817447; background-color: #f8efec">{{ feature }}</span>
+                        <span v-if="feature === '辣'" class="badge fs-6 px-2 py-1" style="color: #814747; background-color: #f8ecec">{{ feature }}</span>
+                      </span>
+                    </h5>
+                    <h4 class="fs-5 fs-lg-4 text-dark mb-2 mb-lg-3">{{ product.title }}</h4>
+                    <h5 class="text-primary mb-3 mb-lg-4 d-flex align-items-center">
+                      NT${{ product.price }}
+                      <span class="fs-6 text-gray-dark ms-2"
+                        ><del>NT${{ product.origin_price }}</del></span
+                      >
+                    </h5>
                   </RouterLink>
                 </div>
-              </div>
+              </template>
+            </div>
+          </div>
+          <!-- 超飽足果昔盆、輕食冷盤、湯品、裸食甜點、果昔飲品 -->
+          <div v-for="tab in categoriesTabs" :key="tab" class="tab-pane fade" :id="tab[1]" role="tabpanel" :aria-labelledby="`${tab[1]}-tab`">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-5">
+              <template v-for="product in products" :key="product.id">
+                <div v-if="product.selectCategories === tab[0]" class="col">
+                  <div class="position-relative hover-show-btn">
+                    <div class="hover-img-mask">
+                      <img :src="product.imageUrl" :alt="product.title" class="w-100 d-block rounded-3 object-fit-cover mb-3" height="240" />
+                      <button
+                        type="button"
+                        class="add-to-cart-btn btn btn-primary position-absolute bottom-0 start-50 translate-middle py-3 fs-5"
+                        :disabled="loadingStatus === product.id"
+                        @click="addToCart(product.id)"
+                      >
+                        <i class="fas fa-spinner fa-pulse me-2" v-if="loadingStatus === product.id"></i>
+                        <span>加入購物車</span>
+                      </button>
+                    </div>
+                  </div>
+                  <RouterLink :to="`/product/${product.id}`">
+                    <h5 class="mb-2 mb-lg-3">
+                      <span v-for="feature in product.checkboxFeatures" :key="feature">
+                        <span v-if="feature === '純素'" class="badge fs-6 bg-primary-light text-primary px-2 py-1 me-1 me-lg-2">{{ feature }}</span>
+                        <span v-if="feature === '有機'" class="badge fs-6 px-2 py-1 me-1 me-lg-2" style="color: #2d9449; background-color: #ecf8f4">{{ feature }}</span>
+                        <span v-if="feature === '無麩質'" class="badge fs-6 px-2 py-1 me-1 me-lg-2" style="color: #817447; background-color: #f8efec">{{ feature }}</span>
+                        <span v-if="feature === '辣'" class="badge fs-6 px-2 py-1" style="color: #814747; background-color: #f8ecec">{{ feature }}</span>
+                      </span>
+                    </h5>
+                    <h4 class="fs-5 fs-lg-4 text-dark mb-2 mb-lg-3">{{ product.title }}</h4>
+                    <h5 class="text-primary mb-3 mb-lg-4 d-flex align-items-center">
+                      NT${{ product.price }}
+                      <span class="fs-6 text-gray-dark ms-2"
+                        ><del>NT${{ product.origin_price }}</del></span
+                      >
+                    </h5>
+                  </RouterLink>
+                </div>
+              </template>
             </div>
           </div>
         </div>
-      </template>
-    </div>
+        <!-- 產品 nav-tabs-content end-->
+      </div>
+    </section>
     <!-- 產品列表 end-->
   </div>
 </template>
 <script>
   import { RouterLink } from 'vue-router';
-  const { VITE_URL, VITE_PATH } = import.meta.env;
+  import { mapState, mapActions } from 'pinia';
+  import productsStore from '@/store/productsStore.js';
+  import loadingStore from '@/store/loadingStore.js';
+  import cartsStore from '@/store/cartsStore.js';
   export default {
     data() {
       return {
-        isLoading: false,
-        loadingStatus: '',
-        products: [],
+        categoriesTabs: [
+          ['超飽足果昔盆', 'bowl'],
+          ['輕食冷盤', 'salad'],
+          ['湯品', 'soup'],
+          ['裸食甜點', 'dessert'],
+          ['果昔飲品', 'juice'],
+        ],
       };
     },
     components: {
       RouterLink,
     },
     methods: {
-      loading() {
-        this.isLoading = true;
-        setTimeout(() => {
-          this.isLoading = false;
-        }, 500);
-      },
-      getProducts() {
-        this.$http
-          .get(`${VITE_URL}/api/${VITE_PATH}/products/all`)
-          .then((res) => {
-            this.products = res.data.products;
-          })
-          .catch((err) => {
-            alert(err.response.data.message);
-          });
-      },
-      addToCart(product_id, qty = 1) {
-        const data = {
-          product_id,
-          qty,
-        };
-        this.loadingStatus = product_id;
-        this.$http
-          .post(`${VITE_URL}/api/${VITE_PATH}/cart`, { data })
-          .then((res) => {
-            this.loadingStatus = '';
-            alert(res.data.message);
-          })
-          .catch((err) => {
-            alert(err.response.data.message);
-          });
-      },
+      ...mapActions(productsStore, ['getProducts']),
+      ...mapActions(loadingStore, ['loading']),
+      ...mapActions(cartsStore, ['addToCart']),
+    },
+    computed: {
+      ...mapState(productsStore, ['products']),
+      ...mapState(loadingStore, ['isLoading', 'loadingStatus']),
     },
     mounted() {
       this.getProducts();
@@ -116,22 +171,52 @@
     },
   };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   .banner {
-    @include banner('@/assets/image/good-vegan-s.png', center 1200px, auto);
+    @include banner('@/assets/image/productBanner.png', center 1200px, auto);
   }
   .banner-plan {
     @include banner-plan();
   }
-  .green {
-    color: #4f8147;
+  .nav-tab-top {
+    top: 57px;
+    @include mobile() {
+      top: 80px;
+    }
   }
-  .bg-light-green {
-    background-color: #f0f8ec;
+  .nav-link:focus {
+    border-color: transparent;
   }
-  a,
-  a:hover {
-    color: inherit;
-    text-decoration: none;
+  .nav-link {
+    border-bottom: 4px solid transparent;
+    &:hover {
+      border-color: transparent;
+    }
+  }
+  .nav-link.active {
+    border-bottom: 4px solid #a8cf45;
+  }
+  .add-to-cart-btn {
+    display: none;
+  }
+  .hover-show-btn:hover {
+    .add-to-cart-btn {
+      display: block;
+      width: 90%;
+    }
+  }
+  .hover-img-mask:before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.4s ease;
+    border-radius: 8px;
+  }
+  .hover-img-mask:hover:before {
+    background-color: rgba(0, 0, 0, 0.3);
   }
 </style>
