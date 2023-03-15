@@ -92,7 +92,10 @@
   import { mapState, mapActions } from 'pinia';
   import loadingStore from '@/store/loadingStore.js';
   import cartsStore from '@/store/cartsStore.js';
+  import Toast from '@/mixins/toast.js';
+
   const { VITE_URL, VITE_PATH } = import.meta.env;
+
   export default {
     data() {
       return {
@@ -115,7 +118,11 @@
             this.product = res.data.product;
           })
           .catch((err) => {
-            alert(err.response.data.message);
+            Toast.fire({
+              icon: 'error',
+              title: err.response.data.message,
+              width: 250,
+            });
           });
       },
     },

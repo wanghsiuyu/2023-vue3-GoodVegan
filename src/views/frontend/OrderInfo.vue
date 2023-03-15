@@ -161,7 +161,10 @@
   import { mapState, mapActions } from 'pinia';
   import loadingStore from '@/store/loadingStore.js';
   import cartsStore from '@/store/cartsStore.js';
+  import Toast from '@/mixins/toast.js';
+
   const { VITE_URL, VITE_PATH } = import.meta.env;
+
   export default {
     data() {
       return {
@@ -186,7 +189,11 @@
           this.$http
             .post(`${VITE_URL}/api/${VITE_PATH}/order`, { data })
             .then((res) => {
-              alert(res.data.message);
+              Toast.fire({
+                icon: 'success',
+                title: res.data.message,
+                width: 250,
+              });
               this.loading();
               this.getCart();
               this.$refs.form.resetForm();
@@ -194,10 +201,18 @@
               this.$router.push(`/order/checkout/${this.orderId}`);
             })
             .catch((err) => {
-              alert(err.response.data.message);
+              Toast.fire({
+                icon: 'error',
+                title: err.response.data.message,
+                width: 250,
+              });
             });
         } else {
-          alert('目前購物車沒有任何品項，無法送出訂單。');
+          Toast.fire({
+            icon: 'error',
+            title: '目前購物車沒有任何品項，無法送出訂單。',
+            width: 250,
+          });
         }
       },
       isPhone(value) {

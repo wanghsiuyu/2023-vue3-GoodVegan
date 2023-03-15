@@ -92,7 +92,7 @@
                   <td class="p-md-3 border-0">{{ order.user?.tel }}</td>
                 </tr>
                 <tr>
-                  <th class="p-md-3 border-0">地址</th>
+                  <th class="p-md-3 border-0">外送地址</th>
                   <td class="p-md-3 border-0">{{ order.user?.address }}</td>
                 </tr>
                 <tr>
@@ -112,7 +112,10 @@
 <script>
   import { mapState, mapActions } from 'pinia';
   import loadingStore from '@/store/loadingStore.js';
+  import Toast from '@/mixins/toast.js';
+
   const { VITE_URL, VITE_PATH } = import.meta.env;
+
   export default {
     data() {
       return {
@@ -133,7 +136,11 @@
             }
           })
           .catch((err) => {
-            console.log(err);
+            Toast.fire({
+              icon: 'error',
+              title: err.response.data.message,
+              width: 250,
+            });
           });
       },
       payOrder(id) {
@@ -142,10 +149,19 @@
           .then((res) => {
             if (res.data.success) {
               this.getOrder();
+              Toast.fire({
+                icon: 'success',
+                title: '已完成付款。',
+                width: 250,
+              });
             }
           })
           .catch((err) => {
-            console.log(err);
+            Toast.fire({
+              icon: 'error',
+              title: err.response.data.message,
+              width: 250,
+            });
           });
       },
     },

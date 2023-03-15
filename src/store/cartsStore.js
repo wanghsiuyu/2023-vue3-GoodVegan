@@ -1,8 +1,11 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
 import loadingStore from '@/store/loadingStore.js';
+import Toast from '@/mixins/toast.js';
+
 const status = loadingStore();
 const { VITE_URL, VITE_PATH } = import.meta.env;
+
 export default defineStore('cartsStore', {
   state: () => ({
     cartsTotal: {},
@@ -20,11 +23,19 @@ export default defineStore('cartsStore', {
         .post(`${VITE_URL}/api/${VITE_PATH}/cart`, { data })
         .then((res) => {
           status.loadingStatus = '';
-          alert(res.data.message);
+          Toast.fire({
+            icon: 'success',
+            title: res.data.message,
+            width: 250,
+          });
           this.getCart();
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          Toast.fire({
+            icon: 'error',
+            title: err.response.data.message,
+            width: 250,
+          });
         });
     },
     getCart() {
@@ -36,7 +47,11 @@ export default defineStore('cartsStore', {
           this.shipping = parseInt(this.cartsTotal.total >= 500 ? 0 : 100);
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          Toast.fire({
+            icon: 'error',
+            title: err.response.data.message,
+            width: 250,
+          });
         });
     },
     removeCart(id) {
@@ -45,22 +60,38 @@ export default defineStore('cartsStore', {
         .delete(`${VITE_URL}/api/${VITE_PATH}/cart/${id}`)
         .then((res) => {
           status.loadingStatus = '';
-          alert(res.data.message);
+          Toast.fire({
+            icon: 'success',
+            title: res.data.message,
+            width: 250,
+          });
           this.getCart();
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          Toast.fire({
+            icon: 'error',
+            title: err.response.data.message,
+            width: 250,
+          });
         });
     },
     removeCartsAll() {
       axios
         .delete(`${VITE_URL}/api/${VITE_PATH}/carts`)
         .then((res) => {
-          alert(res.data.message);
+          Toast.fire({
+            icon: 'success',
+            title: res.data.message,
+            width: 250,
+          });
           this.getCart();
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          Toast.fire({
+            icon: 'error',
+            title: err.response.data.message,
+            width: 250,
+          });
         });
     },
     setCartQty(cart) {
@@ -73,11 +104,19 @@ export default defineStore('cartsStore', {
         .put(`${VITE_URL}/api/${VITE_PATH}/cart/${cart.id}`, { data })
         .then((res) => {
           status.loadingStatus = '';
-          alert(res.data.message);
+          Toast.fire({
+            icon: 'success',
+            title: res.data.message,
+            width: 250,
+          });
           this.getCart();
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          Toast.fire({
+            icon: 'error',
+            title: err.response.data.message,
+            width: 250,
+          });
         });
     },
   },

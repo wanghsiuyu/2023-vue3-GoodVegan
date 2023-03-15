@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { defineStore } from 'pinia';
 import loadingStore from '@/store/loadingStore.js';
+import Toast from '@/mixins/toast.js';
+
 const status = loadingStore();
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
@@ -19,7 +21,11 @@ export default defineStore('productsStore', {
           this.products = res.data.products;
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          Toast.fire({
+            icon: 'error',
+            title: err.response.data.message,
+            width: 250,
+          });
         });
     },
   },
