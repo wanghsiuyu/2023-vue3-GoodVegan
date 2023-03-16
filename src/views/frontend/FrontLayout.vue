@@ -10,16 +10,16 @@
         <!--手機版 cart & login icon-->
         <div class="d-lg-none">
           <RouterLink to="/order/info" class="navbar-brand position-relative">
-            <img src="../../assets/image/cart.svg" alt="cart" width="40" height="40" />
+            <img src="@/assets/image/cart.svg" alt="cart" width="40" height="40" />
             <span v-if="cartsTotalNum" class="position-absolute start-100 translate-middle badge rounded-pill bg-primary text-white" style="top: 6px">{{ cartsTotalNum }}</span>
           </RouterLink>
           <RouterLink to="/login" class="navbar-brand">
-            <img src="../../assets/image/member.svg" alt="member" width="40" height="40" />
+            <img src="@/assets/image/member.svg" alt="member" width="40" height="40" />
           </RouterLink>
         </div>
         <!--漢堡按鈕-->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <img src="../../assets/image/menu.svg" alt="menu" width="40" height="40" />
+          <img src="@/assets/image/menu.svg" alt="menu" width="40" height="40" />
         </button>
       </div>
       <!-- navbar 摺疊內容 -->
@@ -128,6 +128,9 @@
       width: 198px;
       height: 56px;
     }
+  }
+  .nav-item .nav-link {
+    border-bottom: 4px solid transparent;
   }
   .nav-item .router-link-exact-active {
     border-bottom: 4px solid #a8cf45;

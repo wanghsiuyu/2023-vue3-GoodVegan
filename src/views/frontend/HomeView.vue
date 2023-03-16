@@ -3,10 +3,10 @@
   <section class="mt-14 mt-lg-20">
     <div class="home-banner bg-position-center bg-size-cover bg-no-repeat d-flex flex-column justify-content-center align-items-center px-6 px-lg-0">
       <div class="d-flex flex-column justify-content-center align-items-center px-6 py-10 px-lg-10" style="background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(8px); border-radius: 24px">
-        <img src="@/assets/image/logo1.png" alt="logo" width="160" height="160" class="img-fluid home-banner-logo mb-6" />
-        <h3 class="fs-3 fs-lg-1 fw-lg-bold text-center mb-4">A Plant-based Cuisine</h3>
-        <h1 class="fs-5 fs-lg-3 text-center text-gray-dark mb-8">以全植物飲食為理念的餐廳， 為您呈現最健康的蔬食饗宴。</h1>
-        <a href="#/products" class="btn btn-primary fs-lg-5 px-5 py-3 px-lg-6">立即訂餐</a>
+        <img src="@/assets/image/logo1.png" alt="logo" width="160" height="160" class="img-fluid home-banner-logo mb-6" data-aos="fade-up" data-aos-delay="50" />
+        <h3 class="fs-3 fs-lg-1 fw-lg-bold text-center mb-4" data-aos="fade-up" data-aos-delay="100">A Plant-based Cuisine</h3>
+        <h1 class="fs-5 fs-lg-3 text-center text-gray-dark mb-8" data-aos="fade-up" data-aos-delay="200">以全植物飲食為理念的餐廳， 為您呈現最健康的蔬食饗宴。</h1>
+        <a href="#/products" class="btn btn-primary fs-lg-5 px-5 py-3 px-lg-6" data-aos="fade-up" data-aos-delay="300">立即訂餐</a>
       </div>
     </div>
   </section>
@@ -19,13 +19,13 @@
         <h3 class="fs-4 fs-lg-3 text-gray-dark mb-4 mb-lg-10">我們想改變您的飲食方式，提供您健康優質的膳食，這是我們對食物的七大堅持</h3>
         <a href="#/products" class="btn btn-primary fs-lg-5 px-5 py-3 px-lg-6 mb-5 mb-lg-10">立即訂餐</a>
       </div>
-      <div class="row row-cols-1 row-cols-md-2 gx-lg-10">
-        <div class="col">
+      <div class="row row-cols-1 row-cols-md-2">
+        <div class="col" data-aos="fade-left">
           <div class="py-4 p-lg-8 mb-0">
             <div class="d-flex">
               <div class="d-flex align-items-center position-relative">
                 <p class="feature-number position-absolute text-primary-light fw-medium fst-italic lh-1">1</p>
-                <img src="@/assets/image/feature01.png" class="feature-icon me-4 me-lg-6" alt="feature" />
+                <img src="@/assets/image/feature01.svg" class="feature-icon me-4 me-lg-6" alt="feature" />
               </div>
               <div class="">
                 <h4 class="fs-5 fs-lg-4 mb-4 mb-lg-6">植物性飲食</h4>
@@ -36,7 +36,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col" data-aos="fade-right">
           <div class="py-4 p-lg-8 mb-0">
             <div class="d-flex">
               <div class="d-flex align-items-center position-relative">
@@ -52,7 +52,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col" data-aos="fade-left">
           <div class="py-4 p-lg-8 mb-0">
             <div class="d-flex">
               <div class="d-flex align-items-center position-relative">
@@ -66,7 +66,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col" data-aos="fade-right">
           <div class="py-4 p-lg-8 mb-0">
             <div class="d-flex">
               <div class="d-flex align-items-center position-relative">
@@ -80,7 +80,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col" data-aos="fade-left">
           <div class="py-4 p-lg-8 mb-0">
             <div class="d-flex">
               <div class="d-flex align-items-center position-relative">
@@ -96,7 +96,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col" data-aos="fade-right">
           <div class="py-4 p-lg-8 mb-0">
             <div class="d-flex">
               <div class="d-flex align-items-center position-relative">
@@ -110,7 +110,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col" data-aos="fade-left">
           <div class="py-4 p-lg-8 mb-0">
             <div class="d-flex">
               <div class="d-flex align-items-center position-relative">
@@ -133,8 +133,12 @@
     <div class="text-center">
       <h2 class="block-title position-relative fs-3 fs-lg-2 fw-lg-bold mb-5 mb-lg-10">暢銷餐點</h2>
     </div>
-    <div class="container position-relative mb-5 mb-lg-10">
-      <SwiperHotFood></SwiperHotFood>
+    <div class="container mb-5 mb-lg-10" data-aos="fade-down">
+      <div class="row justify-content-center">
+        <div class="col-sm-10 col-xxl-12">
+          <SwiperHotFood></SwiperHotFood>
+        </div>
+      </div>
     </div>
     <div class="text-center">
       <a href="#/products" class="btn btn-primary fs-lg-5 px-5 py-3 px-lg-6">更多餐點</a>
@@ -146,7 +150,7 @@
     <div class="text-center">
       <h2 class="block-title position-relative fs-3 fs-lg-2 fw-lg-bold mb-5 mb-lg-10" style="z-index: 0">好評推薦</h2>
     </div>
-    <div class="container">
+    <div class="container" data-aos="fade-down" data-aos-delay="400">
       <SwiperComment></SwiperComment>
     </div>
     <div id="qa"></div>
@@ -161,7 +165,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-10">
           <div class="accordion accordion-flush" id="accordionExample">
-            <div class="accordion-item">
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
               <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                   <div class="d-flex flex-column align-items-start">
@@ -175,7 +179,7 @@
                 </button>
               </h2>
             </div>
-            <div class="accordion-item">
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
               <h2 class="accordion-header" id="heading2">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
                   <div class="d-flex flex-column align-items-start">
@@ -189,7 +193,7 @@
                 </button>
               </h2>
             </div>
-            <div class="accordion-item">
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
               <h2 class="accordion-header" id="heading3">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
                   <div class="d-flex flex-column align-items-start">
@@ -203,7 +207,7 @@
                 </button>
               </h2>
             </div>
-            <div class="accordion-item">
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
               <h2 class="accordion-header" id="heading2">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse">
                   <div class="d-flex flex-column align-items-start">
@@ -217,7 +221,7 @@
                 </button>
               </h2>
             </div>
-            <div class="accordion-item">
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="500">
               <h2 class="accordion-header" id="heading2">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse2">
                   <div class="d-flex flex-column align-items-start">
@@ -231,7 +235,7 @@
                 </button>
               </h2>
             </div>
-            <div class="accordion-item">
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="550">
               <h2 class="accordion-header" id="heading2">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse2">
                   <div class="d-flex flex-column align-items-start">

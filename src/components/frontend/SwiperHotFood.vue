@@ -51,7 +51,7 @@
   .swiper-button-next:after,
   .swiper-button-prev:after {
     display: none;
-    @include xxl() {
+    @include sm() {
       content: '';
       display: block;
       position: absolute;
@@ -63,17 +63,17 @@
   }
   .swiper-button-next:after {
     background-image: url(@/assets/image/arrow-next.svg);
-    right: -80px;
-    // @include sm() {
-    //   right: 0px;
-    // }
+    right: 0px;
+    @include xxl() {
+      right: -80px;
+    }
   }
   .swiper-button-prev:after {
     background-image: url(@/assets/image/arrow-prev.svg);
-    left: -80px;
-    // @include sm() {
-    //   left: 0px;
-    // }
+    left: 0px;
+    @include xxl() {
+      left: -80px;
+    }
   }
   .add-to-cart-btn {
     display: none;

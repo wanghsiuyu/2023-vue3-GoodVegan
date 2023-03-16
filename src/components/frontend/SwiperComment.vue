@@ -130,7 +130,7 @@
             <span v-for="i in 5" :key="i + 123"><img src="@/assets/image/star-yellow.svg" alt="star-yellow" width="24" height="24" /></span>
           </div>
         </div>
-        <p class="mb-0 line-clamp">大推 ~~~~這大概是我近期最喜歡的餐廳，全素無奶蛋的餐廳。用的食材全部都是無毒對身體好的食材。</p>
+        <p class="mb-0 line-clamp">大推~這大概是我近期最喜歡的餐廳，全素無奶蛋的餐廳。用的食材全部都是無毒對身體好的食材。</p>
       </div>
       <div class="bg-white p-6 rounded-3 mb-0">
         <div class="d-flex gap-3 mb-4">
