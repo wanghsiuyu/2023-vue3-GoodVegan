@@ -64,10 +64,16 @@
   .swiper-button-next:after {
     background-image: url(@/assets/image/arrow-next.svg);
     right: -80px;
+    // @include sm() {
+    //   right: 0px;
+    // }
   }
   .swiper-button-prev:after {
     background-image: url(@/assets/image/arrow-prev.svg);
     left: -80px;
+    // @include sm() {
+    //   left: 0px;
+    // }
   }
   .add-to-cart-btn {
     display: none;
@@ -137,7 +143,6 @@
             },
           },
         },
-        // products: [],
       };
     },
     components: {

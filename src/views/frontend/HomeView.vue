@@ -1,10 +1,9 @@
 <template>
-  <VueLoading v-model:active="isLoading"></VueLoading>
   <!-- banner start-->
   <section class="mt-14 mt-lg-20">
     <div class="home-banner bg-position-center bg-size-cover bg-no-repeat d-flex flex-column justify-content-center align-items-center px-6 px-lg-0">
       <div class="d-flex flex-column justify-content-center align-items-center px-6 py-10 px-lg-10" style="background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(8px); border-radius: 24px">
-        <img src="@/assets/image/logo1.png" alt="logo" width="160" height="160" class="home-banner-logo mb-6" />
+        <img src="@/assets/image/logo1.png" alt="logo" width="160" height="160" class="img-fluid home-banner-logo mb-6" />
         <h3 class="fs-3 fs-lg-1 fw-lg-bold text-center mb-4">A Plant-based Cuisine</h3>
         <h1 class="fs-5 fs-lg-3 text-center text-gray-dark mb-8">以全植物飲食為理念的餐廳， 為您呈現最健康的蔬食饗宴。</h1>
         <a href="#/products" class="btn btn-primary fs-lg-5 px-5 py-3 px-lg-6">立即訂餐</a>
@@ -26,7 +25,7 @@
             <div class="d-flex">
               <div class="d-flex align-items-center position-relative">
                 <p class="feature-number position-absolute text-primary-light fw-medium fst-italic lh-1">1</p>
-                <img src="@/assets/image/feature01.svg" class="feature-icon me-4 me-lg-6" width="48" height="48" alt="feature" />
+                <img src="@/assets/image/feature01.png" class="feature-icon me-4 me-lg-6" alt="feature" />
               </div>
               <div class="">
                 <h4 class="fs-5 fs-lg-4 mb-4 mb-lg-6">植物性飲食</h4>
@@ -253,7 +252,7 @@
   </section>
   <!-- 常見問題 end -->
   <!-- Go to Top start -->
-  <a href="#"><img src="@/assets/image/top.svg" alt="top" class="position-fixed topBtn" /></a>
+  <a href="#"><img src="@/assets/image/top.svg" alt="top" class="img-fluid position-fixed topBtn" /></a>
   <!-- Go to Top end -->
 </template>
 <style lang="scss">
@@ -287,6 +286,8 @@
     }
   }
   .feature-icon {
+    width: 48px;
+    height: 48px;
     @include mobile() {
       width: 64px;
       height: 64px;
@@ -364,21 +365,10 @@
 <script>
   import SwiperComment from '@/components/frontend/SwiperComment.vue';
   import SwiperHotFood from '@/components/frontend/SwiperHotFood.vue';
-  import { mapState, mapActions } from 'pinia';
-  import loadingStore from '@/store/loadingStore.js';
   export default {
     components: {
       SwiperComment,
       SwiperHotFood,
-    },
-    methods: {
-      ...mapActions(loadingStore, ['loading']),
-    },
-    computed: {
-      ...mapState(loadingStore, ['isLoading']),
-    },
-    mounted() {
-      this.loading();
     },
   };
 </script>

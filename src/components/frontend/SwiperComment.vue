@@ -24,7 +24,7 @@
           <img src="@/assets/image/avatar04.png" alt="avatar" width="56" height="56" class="rounded-circle object-fit-cover" />
           <div>
             <p class="mb-2">Chris Wu</p>
-            <span v-for="i in 5" :key="i + 123"><img src="@/assets/image/star-yellow.svg" alt="star-yellow" width="24" height="24" /></span>
+            <span v-for="i in 5" :key="i + 123"><img src="@/assets/image/star-yellow.svg" alt="star-yellow" width="24" height="24" class="img-fluid" /></span>
           </div>
         </div>
         <p class="mb-0 line-clamp">因為我對於奶麩嚴重過敏，外食是很大的挑戰，對於店內的精挑細選的食物印象深刻，吃的很開心，以後會常來光顧。</p>

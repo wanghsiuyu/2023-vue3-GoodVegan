@@ -37,7 +37,7 @@
             <tr v-for="cart in cartsTotal.carts" :key="cart.id">
               <td class="d-flex align-items-center justify-content-between gap-5 gap-md-10 py-4">
                 <div>
-                  <a role="button" class="btn p-0" :class="{ disabled: loadingStatus === cart.id }" title="刪除品項" @click.prevent="removeCart(cart.id)" style="border-color: transparent">
+                  <a role="button" class="btn p-0" :class="{ disabled: loadingStatus === cart.id }" @click.prevent="removeCart(cart.id)" style="border-color: transparent">
                     <i class="fas fa-spinner fa-pulse" v-if="loadingStatus === cart.id"></i>
                     <img v-else src="@/assets/image/delete.svg" alt="delete" />
                   </a>
@@ -60,18 +60,18 @@
           </tbody>
         </table>
         <!-- 購物車合計 -->
-        <div class="row px-2">
+        <div class="row">
           <div class="col-md-4">
             <button type="button" class="btn btn-outline-primary mb-8 mb-md-0" @click="removeCartsAll">清空購物車</button>
           </div>
           <div class="col-md-8">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between px-2">
               <p class="fs-6 mb-2">小計</p>
               <p class="fs-6 mb-2 fw-bold">NT${{ cartsTotal.total }}</p>
             </div>
           </div>
           <div class="col-md-8 offset-md-4">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between px-2">
               <p class="fs-6 mb-2">
                 運費
                 <small v-if="cartsTotal.total < 500" class="text-danger">(消費滿 $500 可享免運優惠)</small>
@@ -79,7 +79,7 @@
               </p>
               <p class="fs-6 mb-2 fw-bold">NT${{ shipping }}</p>
             </div>
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between px-2">
               <p class="fs-6 mb-2">總計</p>
               <p class="fs-6 mb-2 fw-bold">NT${{ cartsTotal.final_total + shipping }}</p>
             </div>
