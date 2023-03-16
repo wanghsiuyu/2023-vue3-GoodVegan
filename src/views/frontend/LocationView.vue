@@ -1,5 +1,4 @@
 <template>
-  <VueLoading v-model:active="isLoading"></VueLoading>
   <!-- banner start-->
   <section class="mb-5 banner" style="height: 380px">
     <div class="container">
@@ -20,28 +19,42 @@
       </ol>
     </nav>
     <!-- breadcrumb end-->
-    <section class="row justify-content-center flex-column flex-lg-row mb-20 mb-lg-8">
-      <div class="col-lg-4 fs-6 fs-lg-5 text-center text-lg-start">
-        <img src="@/assets/image/logo1.png" alt="logo" width="100" height="100" class="mb-4" />
-        <p>台南市東區樂活路 59 號</p>
-        <p>訂位 / 06-2345678</p>
-        <p>週二 - 週日 / 10:30 am - 20:30 pm</p>
-        <p>餐點供應至 20:00 pm</p>
-        <p>週一公休</p>
-        <p>店內禁帶外食，感謝配合</p>
-      </div>
-      <div class="col-lg-4">
-        <div class="store mb-4"></div>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.1736935595773!2d120.17949669414736!3d23.01739387434223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e77637a953ce7%3A0x5932de1ec2587f13!2z5qiC5rS76Lev!5e0!3m2!1szh-TW!2stw!4v1678418669447!5m2!1szh-TW!2stw"
-          width="100%"
-          height="175"
-          style="border: 0"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+    <!-- 門市資訊 start -->
+    <section>
+      <div class="row my-4 my-lg-17">
+        <div class="col-lg-6" data-aos="fade-down">
+          <div class="mb-4 mb-lg-0">
+            <img src="@/assets/image/store.png" alt="store" class="img-fluid w-100 h-100 object-fit-cover" />
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-down">
+          <div class="d-flex flex-column justify-content-center align-items-center h-100">
+            <p>台南市東區樂活路 59 號</p>
+            <p>訂位 / 06-2345678</p>
+            <p>週二 - 週日 / 10:30 am - 20:30 pm</p>
+          </div>
+        </div>
+        <div class="mb-lg-12"></div>
+        <div class="col-lg-4" data-aos="fade-down">
+          <div class="d-flex flex-column justify-content-center align-items-center h-100">
+            <p>餐點供應至 20:00 pm</p>
+            <p>週一公休</p>
+            <p>店內禁帶外食，感謝配合</p>
+          </div>
+        </div>
+        <div class="col-lg-8" data-aos="fade-down">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.1736935595773!2d120.17949669414736!3d23.01739387434223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e77637a953ce7%3A0x5932de1ec2587f13!2z5qiC5rS76Lev!5e0!3m2!1szh-TW!2stw!4v1678418669447!5m2!1szh-TW!2stw"
+            width="100%"
+            height="300"
+            style="border: 0"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
       </div>
     </section>
+    <!-- 門市資訊 end -->
   </div>
 </template>
 <style lang="scss" scoped>
@@ -59,18 +72,3 @@
     background-position: center 0px;
   }
 </style>
-<script>
-  import { mapState, mapActions } from 'pinia';
-  import loadingStore from '@/store/loadingStore.js';
-  export default {
-    methods: {
-      ...mapActions(loadingStore, ['loading']),
-    },
-    computed: {
-      ...mapState(loadingStore, ['isLoading']),
-    },
-    mounted() {
-      this.loading();
-    },
-  };
-</script>

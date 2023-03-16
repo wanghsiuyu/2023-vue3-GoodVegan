@@ -56,7 +56,7 @@
     <RouterView></RouterView>
   </main>
   <!-- footer start -->
-  <footer class="bg-white mt-20">
+  <footer class="bg-white">
     <div class="container py-8">
       <div class="d-lg-flex justify-content-between align-items-center pb-6 pb-lg-4 border-bottom">
         <div class="d-flex flex-lg-column justify-content-between align-items-center align-items-lg-start mb-8 mb-lg-0">

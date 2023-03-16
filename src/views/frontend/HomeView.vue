@@ -20,7 +20,7 @@
         <a href="#/products" class="btn btn-primary fs-lg-5 px-5 py-3 px-lg-6 mb-5 mb-lg-10">立即訂餐</a>
       </div>
       <div class="row row-cols-1 row-cols-md-2">
-        <div class="col" data-aos="fade-left">
+        <div class="col" data-aos="fade-up">
           <div class="py-4 p-lg-8 mb-0">
             <div class="d-flex">
               <div class="d-flex align-items-center position-relative">
@@ -36,7 +36,7 @@
             </div>
           </div>
         </div>
-        <div class="col" data-aos="fade-right">
+        <div class="col" data-aos="fade-down">
           <div class="py-4 p-lg-8 mb-0">
             <div class="d-flex">
               <div class="d-flex align-items-center position-relative">
@@ -52,7 +52,7 @@
             </div>
           </div>
         </div>
-        <div class="col" data-aos="fade-left">
+        <div class="col" data-aos="fade-up">
           <div class="py-4 p-lg-8 mb-0">
             <div class="d-flex">
               <div class="d-flex align-items-center position-relative">
@@ -66,7 +66,7 @@
             </div>
           </div>
         </div>
-        <div class="col" data-aos="fade-right">
+        <div class="col" data-aos="fade-down">
           <div class="py-4 p-lg-8 mb-0">
             <div class="d-flex">
               <div class="d-flex align-items-center position-relative">
@@ -80,7 +80,7 @@
             </div>
           </div>
         </div>
-        <div class="col" data-aos="fade-left">
+        <div class="col" data-aos="fade-up">
           <div class="py-4 p-lg-8 mb-0">
             <div class="d-flex">
               <div class="d-flex align-items-center position-relative">
@@ -96,7 +96,7 @@
             </div>
           </div>
         </div>
-        <div class="col" data-aos="fade-right">
+        <div class="col" data-aos="fade-down">
           <div class="py-4 p-lg-8 mb-0">
             <div class="d-flex">
               <div class="d-flex align-items-center position-relative">
@@ -110,7 +110,7 @@
             </div>
           </div>
         </div>
-        <div class="col" data-aos="fade-left">
+        <div class="col" data-aos="fade-up">
           <div class="py-4 p-lg-8 mb-0">
             <div class="d-flex">
               <div class="d-flex align-items-center position-relative">
