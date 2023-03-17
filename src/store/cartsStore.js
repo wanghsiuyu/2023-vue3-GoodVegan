@@ -2,17 +2,21 @@ import { defineStore } from 'pinia';
 import axios from 'axios';
 import loadingStore from '@/store/loadingStore.js';
 import Toast from '@/mixins/toast.js';
-
+// import Offcanvas from 'bootstrap/js/dist/offcanvas';
 const status = loadingStore();
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
 export default defineStore('cartsStore', {
   state: () => ({
+    // bsOffcanvas: '',
     cartsTotal: {},
     cartsTotalNum: 0,
     shipping: 0,
   }),
   actions: {
+    // toggleCart() {
+    //   this.bsOffcanvas.show();
+    // },
     addToCart(product_id, qty = 1) {
       const data = {
         product_id,
@@ -120,4 +124,7 @@ export default defineStore('cartsStore', {
         });
     },
   },
+  // mounted() {
+  //   this.bsOffcanvas = new Offcanvas(this.$refs.offcanvasRight);
+  // },
 });

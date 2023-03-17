@@ -24,9 +24,9 @@
       </div>
     </div>
     <!-- 訂單確認進度條 end -->
-    <div class="row">
+    <div class="row justify-content-center">
       <!-- 購物車 start -->
-      <section class="col-lg-6 mb-5 mb-lg-0">
+      <section class="col-lg-5 mb-5 mb-lg-0">
         <a href="#/products">
           <p class="d-flex align-items-center text-dark mb-6"><span class="material-icons fs-6 me-2"> arrow_back_ios_new </span>繼續購物</p>
         </a>
@@ -35,55 +35,46 @@
           <tbody>
             <tr class="border-bottom"></tr>
             <tr v-for="cart in cartsTotal.carts" :key="cart.id">
-              <td class="d-flex align-items-center justify-content-between gap-5 gap-md-10 py-4">
-                <div>
-                  <a role="button" class="btn p-0" :class="{ disabled: loadingStatus === cart.id }" @click.prevent="removeCart(cart.id)" style="border-color: transparent">
-                    <i class="fas fa-spinner fa-pulse" v-if="loadingStatus === cart.id"></i>
-                    <img v-else src="@/assets/image/delete.svg" alt="delete" />
+              <td class="d-flex align-items-center justify-content-between gap-5 py-4 px-0">
+                <div class="d-flex align-items-center">
+                  <a role="button" class="btn p-0 me-3" :class="{ disabled: loadingStatus === cart.id }" @click.prevent="removeCart(cart.id)" style="border-color: transparent">
+                    <img src="@/assets/image/delete.svg" alt="delete" />
                   </a>
+                  <img :src="cart.product.imageUrl" class="object-fit-cover flex-shrink-0" width="80" height="80" alt="cart.product.title" />
                 </div>
-                <img :src="cart.product.imageUrl" class="object-fit-cover d-block" width="90" height="90" alt="cart.product.title" />
-                <div class="d-flex flex-column flex-md-row align-items-md-center w-75">
-                  <div class="d-flex flex-column w-md-75">
-                    <p class="mb-1 mb-md-0">{{ cart.product.title }}</p>
-                    <p class="mb-1 mb-md-0">NT${{ cart.product.price }} / {{ cart.product.unit }}</p>
-                    <div class="mb-2 mb-md-0 w-md-50">
+                <div class="d-flex align-items-center justify-content-between w-75">
+                  <div class="d-flex flex-column">
+                    <p class="mb-1">{{ cart.product.title }}</p>
+                    <p class="mb-1">NT${{ cart.product.price }} / {{ cart.product.unit }}</p>
+                    <div class="mb-0 w-75">
                       <select v-model="cart.qty" class="form-select form-select-sm" @change="setCartQty(cart)" :disabled="loadingStatus === cart.id">
                         <option v-for="i in 20" :key="i + 1234" :value="i">{{ i }}</option>
                       </select>
                     </div>
                   </div>
-                  <p class="mb-0 fs-6 text-primary text-md-end w-md-25">NT${{ cart.total }}</p>
+                  <p class="mb-0 text-end">NT${{ cart.total }}</p>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
         <!-- 購物車合計 -->
-        <div class="row">
-          <div class="col-md-4">
-            <button type="button" class="btn btn-outline-primary mb-8 mb-md-0" @click="removeCartsAll">清空購物車</button>
-          </div>
-          <div class="col-md-8">
-            <div class="d-flex justify-content-between px-2">
-              <p class="fs-6 mb-2">小計</p>
-              <p class="fs-6 mb-2 fw-bold">NT${{ cartsTotal.total }}</p>
-            </div>
-          </div>
-          <div class="col-md-8 offset-md-4">
-            <div class="d-flex justify-content-between px-2">
-              <p class="fs-6 mb-2">
-                運費
-                <small v-if="cartsTotal.total < 500" class="text-danger">(消費滿 $500 可享免運優惠)</small>
-                <small v-else class="text-danger">(恭禧您已達免運門檻！)</small>
-              </p>
-              <p class="fs-6 mb-2 fw-bold">NT${{ shipping }}</p>
-            </div>
-            <div class="d-flex justify-content-between px-2">
-              <p class="fs-6 mb-2">總計</p>
-              <p class="fs-6 mb-2 fw-bold">NT${{ cartsTotal.final_total + shipping }}</p>
-            </div>
-          </div>
+        <button type="button" class="btn btn-sm btn-outline-primary mb-3" @click="removeCartsAll">清空購物車</button>
+        <div class="d-flex justify-content-between">
+          <p class="fs-6 mb-2">小計</p>
+          <p class="fs-6 mb-2 fw-bold">NT${{ cartsTotal.total }}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p class="fs-6 mb-2">
+            運費
+            <small v-if="cartsTotal.total < 500" class="text-danger">(消費滿 $500 可享免運優惠)</small>
+            <small v-else class="text-danger">(恭禧您已達免運門檻！)</small>
+          </p>
+          <p class="fs-6 mb-2 fw-bold">NT${{ shipping }}</p>
+        </div>
+        <div class="d-flex justify-content-between mb-2">
+          <p class="fs-6 mb-2">總計</p>
+          <p class="fs-6 mb-2 fw-bold">NT${{ cartsTotal.final_total + shipping }}</p>
         </div>
       </section>
       <!-- 購物車 end -->

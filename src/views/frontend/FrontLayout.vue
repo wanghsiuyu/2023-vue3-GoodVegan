@@ -9,10 +9,11 @@
       <div class="d-flex align-items-center">
         <!--手機版 cart & login icon-->
         <div class="d-lg-none">
-          <RouterLink to="/order/info" class="navbar-brand position-relative">
+          <!-- offcanvas button -->
+          <a role="button" class="navbar-brand position-relative" @click.prevent="toggleOffcanvas()" aria-controls="offcanvasRight">
             <img src="@/assets/image/cart.svg" alt="cart" width="40" height="40" />
-            <span v-if="cartsTotalNum" class="position-absolute start-100 translate-middle badge rounded-pill bg-primary text-white" style="top: 6px">{{ cartsTotalNum }}</span>
-          </RouterLink>
+            <span v-if="cartsTotalNum" class="position-absolute start-100 translate-middle badge rounded-pill bg-primary text-white" style="top: 6px">{{ cartsTotalNum }} </span>
+          </a>
           <RouterLink to="/login" class="navbar-brand">
             <img src="@/assets/image/member.svg" alt="member" width="40" height="40" />
           </RouterLink>
@@ -41,10 +42,11 @@
       </div>
       <!--桌機版 cart & login icon-->
       <div class="d-none d-lg-block">
-        <RouterLink to="/order/info" class="navbar-brand position-relative">
+        <!-- offcanvas button -->
+        <a role="button" class="navbar-brand position-relative" @click.prevent="toggleOffcanvas()" aria-controls="offcanvasRight">
           <img src="@/assets/image/cart.svg" alt="cart" width="40" height="40" />
           <span v-if="cartsTotalNum" class="position-absolute start-100 translate-middle badge rounded-pill bg-primary text-white" style="top: 6px">{{ cartsTotalNum }} </span>
-        </RouterLink>
+        </a>
         <RouterLink to="/login" class="navbar-brand">
           <img src="@/assets/image/member.svg" alt="member" width="40" height="40" />
         </RouterLink>
@@ -52,6 +54,8 @@
     </div>
   </nav>
   <!-- navbar end-->
+  <!-- 購物車 offcanvas -->
+  <CartOffcanvas ref="offcanvas"></CartOffcanvas>
   <main>
     <RouterView></RouterView>
   </main>
@@ -140,13 +144,21 @@
   import { RouterLink, RouterView } from 'vue-router';
   import { mapState, mapActions } from 'pinia';
   import cartsStore from '@/store/cartsStore.js';
+  import CartOffcanvas from '@/components/frontend/CartOffcanvas.vue';
   export default {
+    data() {
+      return {};
+    },
     components: {
       RouterLink,
       RouterView,
+      CartOffcanvas,
     },
     methods: {
       ...mapActions(cartsStore, ['getCart']),
+      toggleOffcanvas() {
+        this.$refs.offcanvas.bsOffcanvas.toggle();
+      },
     },
     computed: {
       ...mapState(cartsStore, ['cartsTotalNum']),
