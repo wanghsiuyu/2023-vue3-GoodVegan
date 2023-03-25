@@ -1,15 +1,12 @@
 <template>
-  <!-- navbar start-->
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-primary-light py-2 py-lg-3">
     <div class="container">
       <RouterLink to="/">
         <img src="@/assets/image/logo2.png" width="113" height="32" alt="logo" class="d-inline-block navbar-logo" />
       </RouterLink>
-
       <div class="d-flex align-items-center">
         <!--手機版 cart & login icon-->
         <div class="d-lg-none">
-          <!-- offcanvas button -->
           <a role="button" class="navbar-brand position-relative" @click.prevent="toggleOffcanvas()" aria-controls="offcanvasRight">
             <img src="@/assets/image/cart.svg" alt="cart" width="40" height="40" />
             <span v-if="cartsTotalNum" class="position-absolute start-100 translate-middle badge rounded-pill bg-primary text-white" style="top: 6px">{{ cartsTotalNum }} </span>
@@ -33,7 +30,7 @@
             <RouterLink to="/products" class="nav-link fs-lg-5 pt-3 mx-5 d-inline-block">線上訂餐</RouterLink>
           </li>
           <li class="nav-item mb-4 mb-lg-0">
-            <RouterLink to="/#qa" class="nav-link fs-lg-5 pt-3 mx-5 d-inline-block" exact-active-class="exact-active">常見問題</RouterLink>
+            <a href="#/#qa" class="nav-link fs-lg-5 pt-3 mx-5 d-inline-block">常見問題</a>
           </li>
           <li class="nav-item mb-4 mb-lg-0">
             <RouterLink to="/location" class="nav-link fs-lg-5 pt-3 mx-5 d-inline-block">門市資訊</RouterLink>
@@ -42,7 +39,6 @@
       </div>
       <!--桌機版 cart & login icon-->
       <div class="d-none d-lg-block">
-        <!-- offcanvas button -->
         <a role="button" class="navbar-brand position-relative" @click.prevent="toggleOffcanvas()" aria-controls="offcanvasRight">
           <img src="@/assets/image/cart.svg" alt="cart" width="40" height="40" />
           <span v-if="cartsTotalNum" class="position-absolute start-100 translate-middle badge rounded-pill bg-primary text-white" style="top: 6px">{{ cartsTotalNum }} </span>
@@ -53,20 +49,15 @@
       </div>
     </div>
   </nav>
-  <!-- navbar end-->
-  <!-- 購物車 offcanvas -->
   <CartOffcanvas ref="offcanvas"></CartOffcanvas>
   <main>
     <RouterView></RouterView>
   </main>
-  <!-- footer start -->
   <footer class="bg-white">
     <div class="container py-8">
       <div class="d-lg-flex justify-content-between align-items-center pb-6 pb-lg-4 border-bottom">
         <div class="d-flex flex-lg-column justify-content-between align-items-center align-items-lg-start mb-8 mb-lg-0">
-          <!-- logo -->
           <a href="#"><img src="@/assets/image/logo2.png" width="183" height="52" alt="logo" class="mb-lg-6" /></a>
-          <!-- fb,IG,youtube -->
           <ul class="nav">
             <li class="nav-item">
               <a href="#" class="me-4">
@@ -85,25 +76,23 @@
             </li>
           </ul>
         </div>
-        <!-- 導航選單 -->
         <ul class="nav mb-2">
           <li class="nav-item mb-6 mb-lg-0">
-            <RouterLink to="/" class="me-21 mx-lg-5 fs-lg-5 text-gray-dark d-inline-block" exact-active-class="exact-active">首頁</RouterLink>
+            <RouterLink to="/" class="me-21 mx-lg-5 fs-lg-5 text-gray-dark" exact-active-class="exact-active">首頁</RouterLink>
           </li>
           <li class="nav-item mb-6 mb-lg-0">
-            <RouterLink to="/about" class="me-13 mx-lg-5 fs-lg-5 text-gray-dark d-inline-block" exact-active-class="exact-active">關於我們</RouterLink>
+            <RouterLink to="/about" class="me-13 mx-lg-5 fs-lg-5 text-gray-dark" exact-active-class="exact-active">關於我們</RouterLink>
           </li>
           <li class="nav-item mb-6 mb-lg-0">
-            <RouterLink to="/products" class="fs-lg-5 text-gray-dark me-13 mx-lg-5 d-inline-block" exact-active-class="exact-active">線上訂餐</RouterLink>
+            <RouterLink to="/products" class="fs-lg-5 text-gray-dark me-13 mx-lg-5" exact-active-class="exact-active">線上訂餐</RouterLink>
           </li>
           <li class="nav-item mb-6 mb-lg-0">
-            <RouterLink to="/#qa" class="fs-lg-5 text-gray-dark me-13 mx-lg-5 d-inline-block" exact-active-class="exact-active">常見問題</RouterLink>
+            <RouterLink to="/#qa" class="fs-lg-5 text-gray-dark me-13 mx-lg-5" exact-active-class="exact-active">常見問題</RouterLink>
           </li>
           <li class="nav-item mb-6 mb-lg-0">
-            <RouterLink to="/location" class="fs-lg-5 text-gray-dark me-13 mx-lg-5 d-inline-block" exact-active-class="exact-active">門市資訊</RouterLink>
+            <RouterLink to="/location" class="fs-lg-5 text-gray-dark me-13 mx-lg-5" exact-active-class="exact-active">門市資訊</RouterLink>
           </li>
         </ul>
-        <!-- 連絡資訊 -->
         <ul class="nav flex-column gap-3 gap-lg-4">
           <li class="nav-item">
             <a href="tel:+88662345678"> <img src="@/assets/image/phone.svg" alt="phone" width="24" class="me-3" />06-2345678 </a>
@@ -116,39 +105,20 @@
           </li>
         </ul>
       </div>
-      <!-- copyright -->
       <div class="d-lg-flex justify-content-between pt-6 pt-lg-4 text-gray">
         <p class="mb-2 mb-lg-0">Copyright © 2023 goodvegan.com | All Rights Reserved.</p>
         <p class="mb-0">本網站僅作為個人練習作品，無任何商業用途</p>
       </div>
     </div>
   </footer>
-  <!-- footer end -->
 </template>
 
-<style lang="scss">
-  .navbar-logo {
-    @include mobile() {
-      width: 198px;
-      height: 56px;
-    }
-  }
-  .nav-item .nav-link {
-    border-bottom: 4px solid transparent;
-  }
-  .nav-item .router-link-exact-active {
-    border-bottom: 4px solid #a8cf45;
-  }
-</style>
 <script>
   import { RouterLink, RouterView } from 'vue-router';
   import { mapState, mapActions } from 'pinia';
   import cartsStore from '@/store/cartsStore.js';
   import CartOffcanvas from '@/components/frontend/CartOffcanvas.vue';
   export default {
-    data() {
-      return {};
-    },
     components: {
       RouterLink,
       RouterView,
@@ -168,3 +138,22 @@
     },
   };
 </script>
+
+<style lang="scss" scoped>
+  .navbar-logo {
+    @include mobile() {
+      width: 198px;
+      height: 56px;
+    }
+  }
+  .nav-item .nav-link {
+    border-bottom: 4px solid transparent;
+  }
+  .nav-item .nav-link:focus {
+    color: black;
+    border-bottom: 4px solid #a8cf45;
+  }
+  .nav-item .router-link-exact-active {
+    border-bottom: 4px solid #a8cf45;
+  }
+</style>

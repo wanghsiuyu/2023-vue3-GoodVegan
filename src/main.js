@@ -11,6 +11,9 @@ import './assets/style/all.scss';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
 
+import CKEditor from '@ckeditor/ckeditor5-vue';
+import { toThousands } from './mixins/filters';
+
 import { Form, Field, ErrorMessage, defineRule, configure } from 'vee-validate';
 import AllRules from '@vee-validate/rules';
 import { localize, setLocale } from '@vee-validate/i18n';
@@ -33,5 +36,7 @@ app.component('VueLoading', Loading);
 app.component('VForm', Form);
 app.component('VField', Field);
 app.component('ErrorMessage', ErrorMessage);
+app.use(CKEditor);
+app.config.globalProperties.$filters = { toThousands };
 
 app.mount('#app');

@@ -146,35 +146,11 @@
     <div class="swiper-pagination position-static mt-5 mt-lg-10"></div>
   </swiper>
 </template>
-<style lang="scss">
-  .line-clamp {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2; /*調整行數*/
-    overflow: hidden;
-  }
-  .swiper-pagination-bullet {
-    width: 8px;
-    height: 8px;
-    text-align: center;
-    opacity: 1;
-    background: #d9d9d9;
-    margin: 0 8px !important;
-    @include mobile() {
-      width: 12px;
-      height: 12px;
-    }
-  }
-  .swiper-pagination-bullet-active {
-    background: #4f8147;
-  }
-</style>
+
 <script>
-  //   import { RouterLink } from 'vue-router';
   import { Swiper, SwiperSlide } from 'swiper/vue';
   import { Autoplay, Pagination } from 'swiper';
 
-  // Import Swiper styles
   import 'swiper/css';
   import 'swiper/css/pagination';
 
@@ -214,3 +190,27 @@
     },
   };
 </script>
+
+<style lang="scss">
+  .line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /*調整行數*/
+    overflow: hidden;
+  }
+  .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    text-align: center;
+    opacity: 1;
+    background: #d9d9d9;
+    margin: 0 8px !important;
+    @include mobile() {
+      width: 12px;
+      height: 12px;
+    }
+  }
+  .swiper-pagination-bullet-active {
+    background: #4f8147;
+  }
+</style>

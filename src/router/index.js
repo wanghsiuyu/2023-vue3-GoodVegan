@@ -10,6 +10,11 @@ const router = createRouter({
         el: to.hash,
       };
     }
+    // if (to.fullPath.match('#qa')) {
+    //   return {
+    //     top: 3000,
+    //   };
+    // }
     return {
       top: 0,
     };
@@ -72,7 +77,19 @@ const router = createRouter({
           path: 'orders',
           component: () => import('../views/admin/AdminOrders.vue'),
         },
+        {
+          path: 'coupons',
+          component: () => import('../views/admin/AdminCoupons.vue'),
+        },
+        {
+          path: 'articles',
+          component: () => import('../views/admin/AdminArticles.vue'),
+        },
       ],
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      component: () => import('@/views/frontend/NotFound.vue'),
     },
   ],
 });

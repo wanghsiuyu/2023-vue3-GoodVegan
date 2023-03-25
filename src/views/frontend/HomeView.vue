@@ -1,5 +1,4 @@
 <template>
-  <!-- banner start-->
   <section class="mt-14 mt-lg-20">
     <div class="home-banner bg-position-center bg-size-cover bg-no-repeat d-flex flex-column justify-content-center align-items-center px-6 px-lg-0">
       <div class="d-flex flex-column justify-content-center align-items-center px-6 py-10 px-lg-10" style="background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(8px); border-radius: 24px">
@@ -10,8 +9,6 @@
       </div>
     </div>
   </section>
-  <!-- banner end-->
-  <!-- 七大堅持 start -->
   <section class="feature-bg bg-no-repeat py-8 py-lg-20">
     <div class="container">
       <div class="text-center">
@@ -127,8 +124,6 @@
       </div>
     </div>
   </section>
-  <!-- 七大堅持 end -->
-  <!-- 暢銷餐點 start -->
   <section class="hot-food-bg bg-size-contain bg-no-repeat py-8 py-lg-20">
     <div class="text-center">
       <h2 class="block-title position-relative fs-3 fs-lg-2 fw-lg-bold mb-5 mb-lg-10">暢銷餐點</h2>
@@ -144,8 +139,6 @@
       <a href="#/products" class="btn btn-primary fs-lg-5 px-5 py-3 px-lg-6">更多餐點</a>
     </div>
   </section>
-  <!-- 暢銷餐點 end -->
-  <!-- 好評推薦 start -->
   <section class="bg-primary-light py-8 py-lg-20">
     <div class="text-center">
       <h2 class="block-title position-relative fs-3 fs-lg-2 fw-lg-bold mb-5 mb-lg-10" style="z-index: 0">好評推薦</h2>
@@ -155,8 +148,6 @@
     </div>
     <div id="qa"></div>
   </section>
-  <!-- 好評推薦 end -->
-  <!-- 常見問題 start -->
   <section class="py-8 py-lg-20">
     <div class="text-center">
       <h2 class="block-title position-relative fs-3 fs-lg-2 fw-lg-bold mb-5 mb-lg-10" style="z-index: 0">常見問題</h2>
@@ -254,13 +245,21 @@
       </div>
     </div>
   </section>
-  <!-- 常見問題 end -->
-  <!-- Go to Top start -->
   <a href="#"><img src="@/assets/image/top.svg" alt="top" class="img-fluid position-fixed topBtn" /></a>
-  <!-- Go to Top end -->
 </template>
+
+<script>
+  import SwiperComment from '@/components/frontend/SwiperComment.vue';
+  import SwiperHotFood from '@/components/frontend/SwiperHotFood.vue';
+  export default {
+    components: {
+      SwiperComment,
+      SwiperHotFood,
+    },
+  };
+</script>
+
 <style lang="scss">
-  // banner start
   .home-banner {
     height: 598px;
     background-image: url(@/assets/image/banner-home-sm.png);
@@ -275,13 +274,9 @@
       height: 200px;
     }
   }
-  // banner end
-  // title 偽元素 start
   .block-title {
     @include block-title();
   }
-  // title 偽元素 end
-  // 七大堅持 start
   .feature-bg {
     @include mobile() {
       background-position: -50px -50px, 102% 109%;
@@ -307,8 +302,6 @@
       left: -20px;
     }
   }
-  // 七大堅持 end
-  // 暢銷餐點 start
   .hot-food-bg {
     background-image: url(@/assets/image/hot-food-bg-sm.svg);
     background-position: bottom right;
@@ -316,8 +309,6 @@
       background-image: url(@/assets/image/hot-food-bg.svg);
     }
   }
-  // 暢銷餐點 end
-  // 常見問題 start
   .accordion-button {
     padding: 16px;
     &:hover {
@@ -350,9 +341,6 @@
   .accordion-item {
     border: 0px solid transparent;
   }
-  // 常見問題 end
-
-  // Go to Top start
   .topBtn {
     width: 56px;
     height: 56px;
@@ -364,15 +352,4 @@
       height: 100px;
     }
   }
-  // Go to Top end
 </style>
-<script>
-  import SwiperComment from '@/components/frontend/SwiperComment.vue';
-  import SwiperHotFood from '@/components/frontend/SwiperHotFood.vue';
-  export default {
-    components: {
-      SwiperComment,
-      SwiperHotFood,
-    },
-  };
-</script>

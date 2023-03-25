@@ -81,13 +81,13 @@
                         <td>
                           <p class="mb-0">{{ product.product.title }}</p>
                         </td>
-                        <td>NT${{ product.product.price }} / {{ product.product.unit }}</td>
+                        <td>NT${{ $filters.toThousands(product.product.price) }} / {{ product.product.unit }}</td>
                         <td class="text-center">{{ product.qty }}</td>
-                        <td class="text-end">NT${{ product.final_total }}</td>
+                        <td class="text-end">NT${{ $filters.toThousands(product.final_total) }}</td>
                       </tr>
                       <tr>
                         <td colspan="4">小計</td>
-                        <td class="text-end">NT${{ tempOrder.total }}</td>
+                        <td class="text-end">NT${{ $filters.toThousands(tempOrder.total) }}</td>
                       </tr>
                       <tr>
                         <td colspan="4">運費</td>
@@ -95,7 +95,7 @@
                       </tr>
                       <tr>
                         <td colspan="4" class="fs-3">總金額</td>
-                        <td class="text-end fs-3">NT${{ tempOrder.total + shipping }}</td>
+                        <td class="text-end fs-3">NT${{ $filters.toThousands(tempOrder.total + shipping) }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -112,6 +112,7 @@
     </div>
   </div>
 </template>
+
 <script>
   export default {
     props: ['order'],

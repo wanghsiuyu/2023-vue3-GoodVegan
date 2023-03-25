@@ -3,7 +3,6 @@
     <div class="text-end m-5">
       <button v-if="orders?.length" type="button" class="btn btn-outline-danger" @click="openModal('deleteAll')">刪除全部訂單</button>
     </div>
-    <!-- 訂單列表 start -->
     <div class="row">
       <table class="table table-hover align-middle">
         <thead>
@@ -37,25 +36,25 @@
           </tr>
         </tbody>
       </table>
-      <!-- 訂單列表 end-->
-      <!-- OrderModal -->
+      <!--Modal -->
       <div class="modal fade" ref="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <OrderModal :order="order" @confirmEdit="confirmEdit"></OrderModal>
       </div>
-      <!-- DeleteOrderModal -->
       <div class="modal fade" ref="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <DeleteOrderModal :order="order" @deleteOrder="deleteOrder" @deleteOrdersAll="deleteOrdersAll"></DeleteOrderModal>
       </div>
-      <!-- 訂單分頁 -->
+
       <AdminPagination :pages="page" @change-page="getOrders"></AdminPagination>
     </div>
   </div>
 </template>
+
 <script>
   import Modal from 'bootstrap/js/dist/modal';
-  import AdminPagination from '../../components/admin/AdminPagination.vue';
-  import OrderModal from '../../components/admin/OrderModal.vue';
-  import DeleteOrderModal from '../../components/admin/DeleteOrderModal.vue';
+  import AdminPagination from '@/components/admin/AdminPagination.vue';
+  import OrderModal from '@/components/admin/OrderModal.vue';
+  import DeleteOrderModal from '@/components/admin/DeleteOrderModal.vue';
+  import Toast from '@/mixins/toast.js';
   const { VITE_URL, VITE_PATH } = import.meta.env;
   export default {
     data() {
@@ -82,7 +81,11 @@
             this.getOrders();
           })
           .catch((err) => {
-            alert(err.response.data.message);
+            Toast.fire({
+              icon: 'error',
+              title: err.response.data.message,
+              width: 250,
+            });
             this.$router.push('/login');
           });
       },
@@ -94,43 +97,71 @@
             this.page = res.data.pagination;
           })
           .catch((err) => {
-            alert(err.response.data.message);
+            Toast.fire({
+              icon: 'error',
+              title: err.response.data.message,
+              width: 250,
+            });
           });
       },
       confirmEdit() {
         this.$http
           .put(`${VITE_URL}/api/${VITE_PATH}/admin/order/${this.order.id}`, { data: this.order })
           .then((res) => {
-            alert(res.data.message);
+            Toast.fire({
+              icon: 'success',
+              title: res.data.message,
+              width: 250,
+            });
             this.editModal.hide();
             this.getOrders();
           })
           .catch((err) => {
-            alert(err.response.data.message);
+            Toast.fire({
+              icon: 'error',
+              title: err.response.data.message,
+              width: 250,
+            });
           });
       },
       deleteOrder() {
         this.$http
           .delete(`${VITE_URL}/api/${VITE_PATH}/admin/order/${this.order.id}`)
           .then((res) => {
-            alert(res.data.message);
+            Toast.fire({
+              icon: 'success',
+              title: res.data.message,
+              width: 250,
+            });
             this.deleteModal.hide();
             this.getOrders();
           })
           .catch((err) => {
-            alert(err.response.data.message);
+            Toast.fire({
+              icon: 'error',
+              title: err.response.data.message,
+              width: 250,
+            });
           });
       },
       deleteOrdersAll() {
         this.$http
           .delete(`${VITE_URL}/api/${VITE_PATH}/admin/orders/all`)
           .then((res) => {
-            alert(res.data.message);
+            Toast.fire({
+              icon: 'success',
+              title: res.data.message,
+              width: 250,
+            });
             this.deleteModal.hide();
             this.getOrders();
           })
           .catch((err) => {
-            alert(err.response.data.message);
+            Toast.fire({
+              icon: 'error',
+              title: err.response.data.message,
+              width: 250,
+            });
           });
       },
       openModal(status, order) {

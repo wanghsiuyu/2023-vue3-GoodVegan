@@ -5,7 +5,6 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body pt-0">
-      <!-- 購物車表格 -->
       <div v-if="cartsTotal.carts?.length">
         <table class="table align-middle" style="font-size: 14px">
           <tbody>
@@ -19,26 +18,25 @@
                   <img :src="cart.product.imageUrl" class="object-fit-cover flex-shrink-0" width="80" height="80" alt="cart.product.title" />
                 </div>
                 <div class="d-flex align-items-center justify-content-between w-75">
-                  <div class="d-flex flex-column">
+                  <div>
                     <p class="mb-1">{{ cart.product.title }}</p>
-                    <p class="mb-1">NT${{ cart.product.price }} / {{ cart.product.unit }}</p>
-                    <div class="mb-0 w-75">
+                    <p class="mb-1">NT${{ $filters.toThousands(cart.product.price) }} / {{ cart.product.unit }}</p>
+                    <div style="width: 80px">
                       <select v-model="cart.qty" class="form-select form-select-sm" @change="setCartQty(cart)" :disabled="loadingStatus === cart.id">
                         <option v-for="i in 20" :key="i + 1234" :value="i">{{ i }}</option>
                       </select>
                     </div>
                   </div>
-                  <p class="mb-0 text-end">NT${{ cart.total }}</p>
+                  <p class="mb-0 text-end">NT${{ $filters.toThousands(cart.total) }}</p>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
-        <!-- 購物車合計 -->
-        <button type="button" class="btn btn-sm btn-outline-primary mb-3" @click="removeCartsAll">清空購物車</button>
+        <button type="button" class="btn btn-sm btn-outline-gray mb-3" @click="removeCartsAll">清空購物車</button>
         <div class="d-flex justify-content-between">
           <p class="fs-6 mb-2">小計</p>
-          <p class="fs-6 mb-2 fw-bold">NT${{ cartsTotal.total }}</p>
+          <p class="fs-6 mb-2 fw-bold">NT${{ $filters.toThousands(cartsTotal.total) }}</p>
         </div>
         <div class="d-flex justify-content-between">
           <p class="fs-6 mb-2">
@@ -50,7 +48,7 @@
         </div>
         <div class="d-flex justify-content-between mb-2">
           <p class="fs-6 mb-2">總計</p>
-          <p class="fs-6 mb-2 fw-bold">NT${{ cartsTotal.final_total + shipping }}</p>
+          <p class="fs-6 mb-2 fw-bold">NT${{ $filters.toThousands(cartsTotal.final_total + shipping) }}</p>
         </div>
         <a href="#" class="btn btn-primary w-100 mb-2" @click.prevent="goOrderView()">訂單結帳</a>
       </div>
@@ -63,18 +61,19 @@
     </div>
   </div>
 </template>
+
 <script>
   import cartsStore from '@/store/cartsStore.js';
   import { mapActions, mapState } from 'pinia';
   import loadingStore from '@/store/loadingStore.js';
   import Offcanvas from 'bootstrap/js/dist/offcanvas';
+
   export default {
     data() {
       return {
         bsOffcanvas: '',
       };
     },
-    components: {},
     methods: {
       ...mapActions(cartsStore, ['getCart', 'removeCart', 'removeCartsAll', 'setCartQty']),
       goProductsView() {

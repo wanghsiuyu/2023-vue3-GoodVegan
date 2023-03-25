@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row vh-100">
-      <div class="col-2 bg-light py-12">
+      <div class="col-2 bg-primary-light py-12">
         <div class="text-center mb-10">
           <img src="../../assets/image/logo2.png" alt="logo" class="img-fluid mb-6 px-5" />
           <div class="d-flex flex-column align-items-center">
@@ -17,8 +17,15 @@
             <RouterLink to="/admin/orders" class="nav-link">訂單管理</RouterLink>
           </li>
           <li class="nav-item">
+            <RouterLink to="/admin/coupons" class="nav-link">優惠券管理</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink to="/admin/articles" class="nav-link">文章管理</RouterLink>
+          </li>
+          <li class="nav-item">
             <RouterLink to="/" class="nav-link">回前台首頁</RouterLink>
           </li>
+
           <li class="nav-item mt-5">
             <a href="#" class="nav-link d-flex align-items-center" @click.prevent="logout"><span class="material-icons"> logout </span>登出</a>
           </li>
@@ -30,6 +37,7 @@
     </div>
   </div>
 </template>
+
 <script>
   import { RouterLink, RouterView } from 'vue-router';
   const { VITE_URL } = import.meta.env;
@@ -40,8 +48,6 @@
     },
     methods: {
       checkLogin() {
-        const myCookie = document.cookie.replace(/(?:(?:^|.*;\s*)myToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
-        this.$http.defaults.headers.common['Authorization'] = myCookie;
         this.$http.post(`${VITE_URL}/api/user/check`).catch((err) => {
           alert(err.response.data.message);
           this.$router.push('/login');
@@ -53,11 +59,14 @@
       },
     },
     mounted() {
+      const myCookie = document.cookie.replace(/(?:(?:^|.*;\s*)myToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
+      this.$http.defaults.headers.common['Authorization'] = myCookie;
       this.checkLogin();
     },
   };
 </script>
-<style lang="scss">
+
+<style lang="scss" scoped>
   .nav-link {
     border-left: 4px solid transparent;
   }

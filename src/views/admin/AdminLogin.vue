@@ -1,4 +1,4 @@
-<template class="">
+<template>
   <div class="bg-light">
     <div class="container">
       <div class="row justify-content-center align-items-center vh-100">
@@ -6,11 +6,11 @@
           <div class="row justify-content-center align-items-center h-100">
             <div class="col-10">
               <div class="text-center">
-                <img src="../../assets/image/logo2.png" alt="logo" class="mb-3" />
+                <img src="@/assets/image/logo2.png" alt="logo" class="mb-3" />
               </div>
               <h2 class="fs-5 text-center mb-3">後台管理系統</h2>
               <div class="text-center">
-                <img src="../../assets/image/login-img.svg" alt="login-img" width="200" />
+                <img src="@/assets/image/login-img.svg" alt="login-img" width="200" />
               </div>
             </div>
           </div>
@@ -39,6 +39,7 @@
     </div>
   </div>
 </template>
+
 <script>
   const { VITE_URL } = import.meta.env;
   export default {

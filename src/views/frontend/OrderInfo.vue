@@ -1,8 +1,7 @@
 <template>
-  <VueLoading v-model:active="isLoading"></VueLoading>
+  <VueLoading v-model:active="isLoading" />
   <!-- 購物車有商品時 -->
   <div v-if="cartsTotal.carts?.length">
-    <!-- 訂單確認進度條 start -->
     <div class="row justify-content-center mb-10">
       <div class="col-3 border-bottom border-5 border-primary">
         <div class="d-flex flex-column align-items-center">
@@ -19,18 +18,15 @@
       <div class="col-3 border-bottom border-5 border-gray">
         <div class="d-flex flex-column align-items-center">
           <div class="rounded-circle bg-gray text-white d-flex align-items-center justify-content-center mb-1" style="width: 20px; height: 20px">3</div>
-          <p class="text-gray mb-2 fw-bold">付款成功</p>
+          <p class="text-gray mb-2 fw-bold">完成訂購</p>
         </div>
       </div>
     </div>
-    <!-- 訂單確認進度條 end -->
     <div class="row justify-content-center">
-      <!-- 購物車 start -->
       <section class="col-lg-5 mb-5 mb-lg-0">
         <a href="#/products">
           <p class="d-flex align-items-center text-dark mb-6"><span class="material-icons fs-6 me-2"> arrow_back_ios_new </span>繼續購物</p>
         </a>
-        <!-- 購物車表格 -->
         <table class="table align-middle">
           <tbody>
             <tr class="border-bottom"></tr>
@@ -43,26 +39,25 @@
                   <img :src="cart.product.imageUrl" class="object-fit-cover flex-shrink-0" width="80" height="80" alt="cart.product.title" />
                 </div>
                 <div class="d-flex align-items-center justify-content-between w-75">
-                  <div class="d-flex flex-column">
+                  <div>
                     <p class="mb-1">{{ cart.product.title }}</p>
-                    <p class="mb-1">NT${{ cart.product.price }} / {{ cart.product.unit }}</p>
-                    <div class="mb-0 w-75">
+                    <p class="mb-1">NT${{ $filters.toThousands(cart.product.price) }} / {{ cart.product.unit }}</p>
+                    <div style="width: 80px">
                       <select v-model="cart.qty" class="form-select form-select-sm" @change="setCartQty(cart)" :disabled="loadingStatus === cart.id">
                         <option v-for="i in 20" :key="i + 1234" :value="i">{{ i }}</option>
                       </select>
                     </div>
                   </div>
-                  <p class="mb-0 text-end">NT${{ cart.total }}</p>
+                  <p class="mb-0 text-end">NT${{ $filters.toThousands(cart.total) }}</p>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
-        <!-- 購物車合計 -->
-        <button type="button" class="btn btn-sm btn-outline-primary mb-3" @click="removeCartsAll">清空購物車</button>
+        <button type="button" class="btn btn-sm btn-outline-gray mb-3" @click="removeCartsAll">清空購物車</button>
         <div class="d-flex justify-content-between">
           <p class="fs-6 mb-2">小計</p>
-          <p class="fs-6 mb-2 fw-bold">NT${{ cartsTotal.total }}</p>
+          <p class="fs-6 mb-2 fw-bold">NT${{ $filters.toThousands(cartsTotal.total) }}</p>
         </div>
         <div class="d-flex justify-content-between">
           <p class="fs-6 mb-2">
@@ -74,12 +69,10 @@
         </div>
         <div class="d-flex justify-content-between mb-2">
           <p class="fs-6 mb-2">總計</p>
-          <p class="fs-6 mb-2 fw-bold">NT${{ cartsTotal.final_total + shipping }}</p>
+          <p class="fs-6 mb-2 fw-bold">NT${{ $filters.toThousands(cartsTotal.final_total + shipping) }}</p>
         </div>
       </section>
-      <!-- 購物車 end -->
-      <!-- 表單 start -->
-      <section class="col-lg-6">
+      <section class="col-lg-5">
         <div class="card border-0 bg-primary-light py-4 p-lg-5">
           <div class="card-body">
             <v-form v-slot="{ errors }" @submit="onSubmit" ref="form">
@@ -138,7 +131,6 @@
           </div>
         </div>
       </section>
-      <!-- 表單 end -->
     </div>
   </div>
   <!-- 購物車為空時 -->
@@ -148,11 +140,13 @@
     <a href="#/products" class="btn btn-primary fs-lg-5 px-5 py-3 px-lg-6">現在就去逛逛</a>
   </div>
 </template>
+
 <script>
   import { mapState, mapActions } from 'pinia';
   import loadingStore from '@/store/loadingStore.js';
   import cartsStore from '@/store/cartsStore.js';
   import Toast from '@/mixins/toast.js';
+  import { toThousands } from '@/mixins/filters';
 
   const { VITE_URL, VITE_PATH } = import.meta.env;
 
@@ -170,6 +164,7 @@
       };
     },
     methods: {
+      toThousands,
       onSubmit() {
         if (this.cartsTotal.carts.length) {
           this.loading();

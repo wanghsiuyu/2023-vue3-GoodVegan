@@ -1,6 +1,5 @@
 <template>
-  <VueLoading v-model:active="isLoading"></VueLoading>
-  <!-- banner start-->
+  <VueLoading v-model:active="isLoading" />
   <section class="mb-5 banner" style="height: 380px">
     <div class="container">
       <div class="row justify-content-center">
@@ -10,20 +9,16 @@
       </div>
     </div>
   </section>
-  <!-- banner end-->
   <div class="container">
-    <!-- breadcrumb start-->
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb mb-5">
         <li class="breadcrumb-item"><RouterLink to="/" class="green">首頁</RouterLink></li>
         <li class="breadcrumb-item active" aria-current="page">線上訂餐</li>
       </ol>
     </nav>
-    <!-- breadcrumb end-->
-    <!-- 產品列表 start-->
     <section class="row justify-content-center mb-5">
       <div class="col-12">
-        <!-- 產品 nav-tabs start-->
+        <!-- 產品 nav-tabs-->
         <ul class="nav sticky-top bg-light mb-6 nav-tab-top" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
             <a class="nav-link active fs-6 fs-lg-5 text-dark px-1 mx-2" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" href="#" role="tab" aria-controls="all" aria-selected="true">
@@ -45,8 +40,7 @@
             </a>
           </li>
         </ul>
-        <!-- 產品 nav-tabs end-->
-        <!-- 產品 nav-tabs-content start-->
+        <!-- 產品 nav-tabs-content-->
         <div class="tab-content" id="myTabContent">
           <!-- 全部商品 -->
           <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
@@ -55,7 +49,9 @@
                 <div v-if="products" class="col">
                   <div class="position-relative hover-show-btn">
                     <div class="hover-img-mask">
-                      <img :src="product.imageUrl" :alt="product.title" class="w-100 d-block rounded-3 object-fit-cover mb-3" height="240" />
+                      <RouterLink :to="`/product/${product.id}`" class="hover-img-mask">
+                        <img :src="product.imageUrl" :alt="product.title" class="w-100 d-block rounded-3 object-fit-cover" height="240" />
+                      </RouterLink>
                       <button
                         type="button"
                         class="add-to-cart-btn btn btn-primary position-absolute bottom-0 start-50 translate-middle py-3 fs-5"
@@ -68,21 +64,23 @@
                     </div>
                   </div>
                   <RouterLink :to="`/product/${product.id}`">
-                    <h5 class="mb-2 mb-lg-3">
-                      <span v-for="feature in product.checkboxFeatures" :key="feature">
-                        <span v-if="feature === '純素'" class="badge fs-6 bg-primary-light text-primary px-2 py-1 me-1 me-lg-2">{{ feature }}</span>
-                        <span v-if="feature === '有機'" class="badge fs-6 px-2 py-1 me-1 me-lg-2" style="color: #2d9449; background-color: #ecf8f4">{{ feature }}</span>
-                        <span v-if="feature === '無麩質'" class="badge fs-6 px-2 py-1 me-1 me-lg-2" style="color: #817447; background-color: #f8efec">{{ feature }}</span>
-                        <span v-if="feature === '辣'" class="badge fs-6 px-2 py-1" style="color: #814747; background-color: #f8ecec">{{ feature }}</span>
-                      </span>
-                    </h5>
-                    <h4 class="fs-5 fs-lg-4 text-dark mb-2 mb-lg-3">{{ product.title }}</h4>
-                    <h5 class="text-primary mb-3 mb-lg-4 d-flex align-items-center">
-                      NT${{ product.price }}
-                      <span class="fs-6 text-gray-dark ms-2"
-                        ><del>NT${{ product.origin_price }}</del></span
-                      >
-                    </h5>
+                    <div class="py-3 py-lg-4">
+                      <h5 class="mb-2 mb-lg-3">
+                        <span v-for="feature in product.checkboxFeatures" :key="feature">
+                          <span v-if="feature === '純素'" class="badge fs-6 bg-primary-light text-primary px-2 py-1 me-1 me-lg-2">{{ feature }}</span>
+                          <span v-if="feature === '有機'" class="badge fs-6 px-2 py-1 me-1 me-lg-2" style="color: #2d9449; background-color: #ecf8f4">{{ feature }}</span>
+                          <span v-if="feature === '無麩質'" class="badge fs-6 px-2 py-1 me-1 me-lg-2" style="color: #817447; background-color: #f8efec">{{ feature }}</span>
+                          <span v-if="feature === '辣'" class="badge fs-6 px-2 py-1" style="color: #814747; background-color: #f8ecec">{{ feature }}</span>
+                        </span>
+                      </h5>
+                      <h4 class="fs-5 fs-lg-4 text-dark mb-2 mb-lg-3">{{ product.title }}</h4>
+                      <h5 class="text-primary d-flex align-items-center">
+                        NT${{ $filters.toThousands(product.price) }}
+                        <span class="fs-6 text-gray-dark ms-2"
+                          ><del>NT${{ $filters.toThousands(product.origin_price) }}</del></span
+                        >
+                      </h5>
+                    </div>
                   </RouterLink>
                 </div>
               </template>
@@ -95,7 +93,9 @@
                 <div v-if="product.selectCategories === tab[0]" class="col">
                   <div class="position-relative hover-show-btn">
                     <div class="hover-img-mask">
-                      <img :src="product.imageUrl" :alt="product.title" class="w-100 d-block rounded-3 object-fit-cover mb-3" height="240" />
+                      <RouterLink :to="`/product/${product.id}`" class="hover-img-mask">
+                        <img :src="product.imageUrl" :alt="product.title" class="w-100 d-block rounded-3 object-fit-cover" height="240" />
+                      </RouterLink>
                       <button
                         type="button"
                         class="add-to-cart-btn btn btn-primary position-absolute bottom-0 start-50 translate-middle py-3 fs-5"
@@ -108,33 +108,34 @@
                     </div>
                   </div>
                   <RouterLink :to="`/product/${product.id}`">
-                    <h5 class="mb-2 mb-lg-3">
-                      <span v-for="feature in product.checkboxFeatures" :key="feature">
-                        <span v-if="feature === '純素'" class="badge fs-6 bg-primary-light text-primary px-2 py-1 me-1 me-lg-2">{{ feature }}</span>
-                        <span v-if="feature === '有機'" class="badge fs-6 px-2 py-1 me-1 me-lg-2" style="color: #2d9449; background-color: #ecf8f4">{{ feature }}</span>
-                        <span v-if="feature === '無麩質'" class="badge fs-6 px-2 py-1 me-1 me-lg-2" style="color: #817447; background-color: #f8efec">{{ feature }}</span>
-                        <span v-if="feature === '辣'" class="badge fs-6 px-2 py-1" style="color: #814747; background-color: #f8ecec">{{ feature }}</span>
-                      </span>
-                    </h5>
-                    <h4 class="fs-5 fs-lg-4 text-dark mb-2 mb-lg-3">{{ product.title }}</h4>
-                    <h5 class="text-primary mb-3 mb-lg-4 d-flex align-items-center">
-                      NT${{ product.price }}
-                      <span class="fs-6 text-gray-dark ms-2"
-                        ><del>NT${{ product.origin_price }}</del></span
-                      >
-                    </h5>
+                    <div class="py-3 py-lg-4">
+                      <h5 class="mb-2 mb-lg-3">
+                        <span v-for="feature in product.checkboxFeatures" :key="feature">
+                          <span v-if="feature === '純素'" class="badge fs-6 bg-primary-light text-primary px-2 py-1 me-1 me-lg-2">{{ feature }}</span>
+                          <span v-if="feature === '有機'" class="badge fs-6 px-2 py-1 me-1 me-lg-2" style="color: #2d9449; background-color: #ecf8f4">{{ feature }}</span>
+                          <span v-if="feature === '無麩質'" class="badge fs-6 px-2 py-1 me-1 me-lg-2" style="color: #817447; background-color: #f8efec">{{ feature }}</span>
+                          <span v-if="feature === '辣'" class="badge fs-6 px-2 py-1" style="color: #814747; background-color: #f8ecec">{{ feature }}</span>
+                        </span>
+                      </h5>
+                      <h4 class="fs-5 fs-lg-4 text-dark mb-2 mb-lg-3">{{ product.title }}</h4>
+                      <h5 class="text-primary d-flex align-items-center">
+                        NT${{ $filters.toThousands(product.price) }}
+                        <span class="fs-6 text-gray-dark ms-2"
+                          ><del>NT${{ $filters.toThousands(product.origin_price) }}</del></span
+                        >
+                      </h5>
+                    </div>
                   </RouterLink>
                 </div>
               </template>
             </div>
           </div>
         </div>
-        <!-- 產品 nav-tabs-content end-->
       </div>
     </section>
-    <!-- 產品列表 end-->
   </div>
 </template>
+
 <script>
   import { RouterLink } from 'vue-router';
   import { mapState, mapActions } from 'pinia';
@@ -171,9 +172,13 @@
     },
   };
 </script>
+
 <style lang="scss" scoped>
   .banner {
-    @include banner('@/assets/image/productBanner.png', center 1200px, auto);
+    @include banner('@/assets/image/productBanner-s.png', center, cover);
+    @include mobile() {
+      @include banner('@/assets/image/productBanner.png', center, cover);
+    }
   }
   .banner-plan {
     @include banner-plan();

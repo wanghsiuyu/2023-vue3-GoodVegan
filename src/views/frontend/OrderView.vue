@@ -1,6 +1,5 @@
 <template>
   <div class="container content-height">
-    <!-- breadcrumb start-->
     <nav aria-label="breadcrumb " style="margin-top: 100px">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><RouterLink to="/" class="green">首頁</RouterLink></li>
@@ -8,12 +7,12 @@
         <li class="breadcrumb-item active" aria-current="page">訂單細節</li>
       </ol>
     </nav>
-    <!-- breadcrumb end-->
     <div class="my-8 my-md-15">
       <RouterView></RouterView>
     </div>
   </div>
 </template>
+
 <script>
   import { RouterView } from 'vue-router';
   import { mapState } from 'pinia';
@@ -27,6 +26,7 @@
     },
   };
 </script>
+
 <style lang="scss" scoped>
   .content-height {
     @include mobile() {

@@ -1,6 +1,5 @@
 <template>
-  <VueLoading v-model:active="isLoading"></VueLoading>
-  <!-- banner start-->
+  <VueLoading v-model:active="isLoading" />
   <section class="mb-5 banner" style="height: 380px">
     <div class="container">
       <div class="row justify-content-center">
@@ -10,16 +9,13 @@
       </div>
     </div>
   </section>
-  <!-- banner end-->
   <div class="container">
-    <!-- breadcrumb start-->
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb mb-8 mb-lg-20">
         <li class="breadcrumb-item"><RouterLink to="/" class="green">首頁</RouterLink></li>
         <li class="breadcrumb-item active" aria-current="page">關於我們</li>
       </ol>
     </nav>
-    <!-- breadcrumb end-->
     <section>
       <div class="text-center">
         <h2 class="block-title position-relative fs-3 fs-lg-2 fw-lg-bold mb-8 mb-lg-15">我們的理念</h2>
@@ -27,7 +23,7 @@
       <div class="row justify-content-between mb-4 mb-lg-17">
         <div class="col-lg-6 mb-4 mb-lg-0">
           <img
-            src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+            src="https://storage.googleapis.com/vue-course-api.appspot.com/gracewang/1679669961430.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=XXkpbHBPV1ps%2Fii0CbAy2mfOfqvOhr%2B%2BBA4HpkN8FlyjWiYRnW1eHBMLDXNGYiaJ%2BfVOCouvE0IsVWsSgsxFZB%2FJ%2BGDzYk5YkBIbauBqjQ8Nmk94UB4PDf8gpsHnMEsqp2E5S6BYGl%2FVQMPkyARXPCt1Ber55DmM1zwxMy6USqqB8lV%2FSinveWclkbA4ytPUT%2FPyROID3hLAd4tqCgRNfW%2BBIjTOUnEHfhOYwHTEs9M%2FvjtitwkdFV%2BRy7vizLXY3xxGCcPVYgCoBsxs9U0YeOJ9FGC1CFEa2J92H7hZHFOx4JtJWtqfhbM9%2BHjwHuY3%2BjzSxrIpKMose0URYNw9hw%3D%3D"
             alt="vegan food"
             class="img-fluid object-fit-cover"
             data-aos="fade-down"
@@ -48,7 +44,7 @@
         <div class="col-lg-6 mb-4 mb-lg-0">
           <div class="text-end">
             <img
-              src="https://images.unsplash.com/photo-1569420077790-afb136b3bb8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1489&q=80"
+              src="https://storage.googleapis.com/vue-course-api.appspot.com/gracewang/1679669849069.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=BUXOL9thMIhPnwoxQqBr63RB%2FZHfzlNtQpEewY3v94PQWzW68Lllj93Mi3iStAxrPbMV%2FGljW9oqtF17Ult%2B4c6ge0SprZxRlVmxEYRev7MhhQFW53IDSvR9g2%2BBJEVNWpwOH8U0XrvMMhTMNzRM508Lb7d1VAgXv0nyc0wguKwtlI%2FyaxVLVFAfNf9Rp1vks03X%2BJ2FL%2FfOFnSBRxFDTc2ukFYTry5SoVV3YjRgty273C8bRna2rXJcZXs%2BISaTMaWio9wO8pBsLwIn8IDvzSolyYubwFeV5VK%2BFBq3LxtkFi3M7XrscaR%2Fbko7mvWhS622cy0d0%2FBJs40cHm2oTQ%3D%3D"
               alt="vegan food"
               class="img-fluid object-fit-cover"
               width="600"
@@ -72,7 +68,7 @@
       <div class="row justify-content-between mb-8 mb-lg-20">
         <div class="col-lg-6 mb-4 mb-lg-0">
           <img
-            src="https://images.unsplash.com/uploads/1412443967017d95e2723/2919e13b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+            src="https://storage.googleapis.com/vue-course-api.appspot.com/gracewang/1679669791972.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=gGRDGKqEU1jX5uP83fSgZF5ETm6Mb7kuk2FEdmJLZPbcWGZDdrLIinnobSE8y%2Birt3%2F%2Fg2fhXQP2PYYZTDBpXSSaNQ4uEui5418aoPDRKrBExln%2BTyKN8k08M7ZkxNEtKdIlpBu7q20egF81xKoBotJWUlyS3L7siFgJ3GL2jCdUmQ3QZNQ9utSOm3VPGUcmuAZ2P5lyhJIEwJbUMqbJS%2B6Alatcu1nZ0sQwqx0%2FPPihDvCJY5IQW7Pv556HEIpscEgZO%2FQjXnlwLHNxNbp%2BpMkY3ILx229QMXQ9ibzW683XAekYTnL4UiXs3cnc7delb67yfgHY5YQdArTQp92J8w%3D%3D"
             alt="eco"
             class="img-fluid object-fit-cover"
             width="600"
@@ -88,7 +84,6 @@
           </div>
         </div>
       </div>
-
       <div class="text-center">
         <h2 class="block-title position-relative fs-3 fs-lg-2 fw-lg-bold mb-8 mb-lg-15">我們是誰</h2>
       </div>
@@ -116,18 +111,7 @@
     </section>
   </div>
 </template>
-<style lang="scss" scoped>
-  .banner {
-    @include banner('https://images.unsplash.com/photo-1586718520679-67716c8f1b9b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80', bottom, cover);
-  }
-  .banner-plan {
-    @include banner-plan();
-  }
-  // title 偽元素
-  .block-title {
-    @include block-title();
-  }
-</style>
+
 <script>
   import { mapState, mapActions } from 'pinia';
   import loadingStore from '@/store/loadingStore.js';
@@ -143,3 +127,19 @@
     },
   };
 </script>
+
+<style lang="scss" scoped>
+  .banner {
+    @include banner(
+      'https://storage.googleapis.com/vue-course-api.appspot.com/gracewang/1679670454714.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=i6yxtQ4PXoQslHHRb3wKBzqSQNTsqU40HKsdQxWJlHYgvAz7UAu3RUmoX0b6T4aB6LsfFWhLyyJeHgFfVX8VMd01v1iSaTIi5Ud0Oc%2B8zHWH6PmvVGypc%2FCIuXoONGLfVw0xCo4DSTCE8IDu1oB9YrFeQ50v9fT%2FQbzjQPe1b9%2B3LJNyWwYmHDsmsrRAiFLENKwXDE6SqteDgay1d7%2BBZl4qWyZEraJbm2xM1JeZ5as9zrOi2o5JibRqaD0RBY2Dct94MrEWZaEQC6pyr18dJcdKDNs%2BBTvWaos9RYwy6dXNPhJ6%2F6mshpZFfsvQ2EAYtRl8Cwr0Xq6yLWS4Tl%2FGMg%3D%3D',
+      center,
+      cover
+    );
+  }
+  .banner-plan {
+    @include banner-plan();
+  }
+  .block-title {
+    @include block-title();
+  }
+</style>

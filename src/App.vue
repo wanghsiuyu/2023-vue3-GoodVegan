@@ -1,3 +1,7 @@
+<template>
+  <RouterView> </RouterView>
+</template>
+
 <script>
   import { RouterView } from 'vue-router';
   import AOS from 'aos';
@@ -31,7 +35,3 @@
     },
   };
 </script>
-
-<template>
-  <RouterView> </RouterView>
-</template>
