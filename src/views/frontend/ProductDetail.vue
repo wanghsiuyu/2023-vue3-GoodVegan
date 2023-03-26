@@ -78,7 +78,7 @@
           </ol>
         </div>
       </section>
-      <section class="col-lg-10 py-8 py-lg-20">
+      <section class="col-lg-10 py-8 pt-lg-15">
         <div class="text-center text-lg-start">
           <h2 class="block-title position-relative fs-3 fs-lg-2 fw-lg-bold mb-6 mb-lg-10">相關餐點</h2>
         </div>
@@ -103,8 +103,8 @@
               </div>
               <RouterLink :to="`/product/${item.id}`">
                 <div class="py-3 py-lg-4">
-                  <h4 class="fs-5 fs-lg-4 text-dark mb-2 mb-lg-3">{{ item.title }}</h4>
-                  <h5 class="text-primary d-flex align-items-center">
+                  <h4 class="fs-5 text-center text-dark mb-2 mb-lg-3">{{ item.title }}</h4>
+                  <h5 class="text-primary d-flex align-items-center justify-content-center">
                     NT${{ $filters.toThousands(item.price) }}
                     <span class="fs-6 text-gray-dark ms-2"
                       ><del>NT${{ $filters.toThousands(item.origin_price) }}</del></span
@@ -136,20 +136,23 @@
         product: {},
         productQty: 1,
         selectImg: '',
+        isLoading: false,
       };
     },
     components: {
       RouterLink,
     },
     methods: {
-      ...mapActions(loadingStore, ['loading']),
       ...mapActions(cartsStore, ['addToCart']),
       ...mapActions(productsStore, ['getProducts']),
       getProduct() {
+        this.isLoading = true;
         const { id } = this.$route.params;
         this.$http
           .get(`${VITE_URL}/api/${VITE_PATH}/product/${id}`)
           .then((res) => {
+            this.isLoading = false;
+            this.selectImg = '';
             this.product = res.data.product;
           })
           .catch((err) => {
@@ -162,14 +165,22 @@
       },
     },
     computed: {
-      ...mapState(loadingStore, ['isLoading', 'loadingStatus']),
+      ...mapState(loadingStore, ['loadingStatus']),
       ...mapState(productsStore, ['products']),
     },
+    watch: {
+      '$route.params': {
+        immediate: true,
+        handler() {
+          if (this.$route.params.id) {
+            this.getProduct();
+          }
+        },
+      },
+    },
     mounted() {
-      this.loading();
       this.getProduct();
       this.productQty = 1;
-      this.selectImg = '';
       this.getProducts();
     },
   };

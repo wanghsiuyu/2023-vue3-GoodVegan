@@ -1,11 +1,16 @@
 <template>
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasRight" ref="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
-      <h5 id="offcanvasRightLabel">購物車 ({{ cartsTotalNum }})</h5>
+      <h5 id="offcanvasRightLabel">
+        購物車 <span v-if="cartsTotalNum">({{ cartsTotalNum }})</span>
+      </h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body pt-0">
       <div v-if="cartsTotal.carts?.length">
+        <div class="text-end">
+          <button type="button" class="btn btn-sm btn-outline-gray mb-2" @click="confirmRemove" style="font-size: 12px">清空購物車</button>
+        </div>
         <table class="table align-middle" style="font-size: 14px">
           <tbody>
             <tr class="border-bottom"></tr>
@@ -33,7 +38,6 @@
             </tr>
           </tbody>
         </table>
-        <button type="button" class="btn btn-sm btn-outline-gray mb-3" @click="removeCartsAll">清空購物車</button>
         <div class="d-flex justify-content-between">
           <p class="fs-6 mb-2">小計</p>
           <p class="fs-6 mb-2 fw-bold">NT${{ $filters.toThousands(cartsTotal.total) }}</p>
@@ -48,7 +52,7 @@
         </div>
         <div class="d-flex justify-content-between mb-2">
           <p class="fs-6 mb-2">總計</p>
-          <p class="fs-6 mb-2 fw-bold">NT${{ $filters.toThousands(cartsTotal.final_total + shipping) }}</p>
+          <p class="fs-6 mb-2 fw-bold">NT${{ $filters.toThousands(cartsTotal.total + shipping) }}</p>
         </div>
         <a href="#" class="btn btn-primary w-100 mb-2" @click.prevent="goOrderView()">訂單結帳</a>
       </div>
@@ -75,7 +79,8 @@
       };
     },
     methods: {
-      ...mapActions(cartsStore, ['getCart', 'removeCart', 'removeCartsAll', 'setCartQty']),
+      ...mapActions(cartsStore, ['getCart', 'removeCart', 'confirmRemove', 'removeCartsAll', 'setCartQty']),
+
       goProductsView() {
         this.bsOffcanvas.hide();
         this.$router.push('/products');

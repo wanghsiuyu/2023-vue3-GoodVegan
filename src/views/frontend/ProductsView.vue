@@ -1,5 +1,4 @@
 <template>
-  <VueLoading v-model:active="isLoading" />
   <section class="mb-5 banner" style="height: 380px">
     <div class="container">
       <div class="row justify-content-center">
@@ -159,16 +158,14 @@
     },
     methods: {
       ...mapActions(productsStore, ['getProducts']),
-      ...mapActions(loadingStore, ['loading']),
       ...mapActions(cartsStore, ['addToCart']),
     },
     computed: {
       ...mapState(productsStore, ['products']),
-      ...mapState(loadingStore, ['isLoading', 'loadingStatus']),
+      ...mapState(loadingStore, ['loadingStatus']),
     },
     mounted() {
       this.getProducts();
-      this.loading();
     },
   };
 </script>

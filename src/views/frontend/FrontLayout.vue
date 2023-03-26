@@ -129,12 +129,22 @@
       toggleOffcanvas() {
         this.$refs.offcanvas.bsOffcanvas.toggle();
       },
+      navbarCollapse() {
+        const navLink = document.querySelectorAll('.nav-link');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        navLink.forEach((item) => {
+          item.addEventListener('click', () => {
+            navbarCollapse.classList.toggle('show');
+          });
+        });
+      },
     },
     computed: {
       ...mapState(cartsStore, ['cartsTotalNum']),
     },
     mounted() {
       this.getCart();
+      this.navbarCollapse();
     },
   };
 </script>

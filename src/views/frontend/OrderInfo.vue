@@ -24,9 +24,12 @@
     </div>
     <div class="row justify-content-center">
       <section class="col-lg-5 mb-5 mb-lg-0">
-        <a href="#/products">
-          <p class="d-flex align-items-center text-dark mb-6"><span class="material-icons fs-6 me-2"> arrow_back_ios_new </span>繼續購物</p>
-        </a>
+        <div class="d-flex justify-content-between align-items-center">
+          <a href="#/products">
+            <p class="d-flex align-items-center text-dark mb-6"><span class="material-icons fs-6 me-2"> arrow_back_ios_new </span>繼續購物</p>
+          </a>
+          <button type="button" class="btn btn-sm btn-outline-gray" @click="confirmRemove" style="font-size: 12px">清空購物車</button>
+        </div>
         <table class="table align-middle">
           <tbody>
             <tr class="border-bottom"></tr>
@@ -54,7 +57,16 @@
             </tr>
           </tbody>
         </table>
-        <button type="button" class="btn btn-sm btn-outline-gray mb-3" @click="removeCartsAll">清空購物車</button>
+        <div class="d-flex align-items center gap-1">
+          <span class="material-icons"> discount </span>
+          <label class="form-label">結帳輸入 <span class="text-primary fw-bold">vegan888</span> 即享有八八折優惠</label>
+          <button type="button" class="btn btn-outline-gray-dark btn-sm py-0 mb-2 flex-shrink-0" style="font-size: 12px" @click="copyText">複製</button>
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <input type="text" class="form-control" placeholder="請輸入優惠碼" aria-label="請輸入優惠碼" :value="couponCode" aria-describedby="button-addon2" />
+          <button class="btn btn-outline-primary" type="button" id="button-addon2" @click="addCoupon">套用</button>
+        </div>
         <div class="d-flex justify-content-between">
           <p class="fs-6 mb-2">小計</p>
           <p class="fs-6 mb-2 fw-bold">NT${{ $filters.toThousands(cartsTotal.total) }}</p>
@@ -67,9 +79,13 @@
           </p>
           <p class="fs-6 mb-2 fw-bold">NT${{ shipping }}</p>
         </div>
-        <div class="d-flex justify-content-between mb-2">
+        <div class="d-flex justify-content-between">
           <p class="fs-6 mb-2">總計</p>
-          <p class="fs-6 mb-2 fw-bold">NT${{ $filters.toThousands(cartsTotal.final_total + shipping) }}</p>
+          <p class="fs-6 mb-2 fw-bold">NT${{ $filters.toThousands(cartsTotal.total + shipping) }}</p>
+        </div>
+        <div v-if="cartsTotal.total !== cartsTotal.final_total" class="d-flex justify-content-between mb-2">
+          <p class="fs-6 mb-2 text-danger">折扣價</p>
+          <p class="fs-6 mb-2 fw-bold text-danger">NT${{ $filters.toThousands(cartsTotal.final_total + shipping) }}</p>
         </div>
       </section>
       <section class="col-lg-5">
@@ -79,7 +95,7 @@
               <h2 class="h5 text-center mb-6">訂單連絡資訊</h2>
               <div class="mb-4">
                 <label for="name" class="form-label">姓名<span class="text-danger">*</span></label>
-                <v-field id="name" name="姓名" type="text" class="form-control" :class="{ 'is-invalid': errors['姓名'] }" placeholder="王小明" rules="required" v-model="user.name"></v-field>
+                <v-field id="name" name="姓名" type="text" class="form-control" :class="{ 'is-invalid': errors['姓名'] }" placeholder="請填寫真實姓名" rules="required" v-model="user.name"></v-field>
                 <error-message name="姓名" class="invalid-feedback"></error-message>
               </div>
               <div class="mb-4">
@@ -146,7 +162,6 @@
   import loadingStore from '@/store/loadingStore.js';
   import cartsStore from '@/store/cartsStore.js';
   import Toast from '@/mixins/toast.js';
-  import { toThousands } from '@/mixins/filters';
 
   const { VITE_URL, VITE_PATH } = import.meta.env;
 
@@ -161,10 +176,36 @@
         },
         message: '',
         orderId: '',
+        couponCode: '',
       };
     },
     methods: {
-      toThousands,
+      copyText() {
+        this.couponCode = 'vegan888';
+        this.getCart();
+      },
+      addCoupon() {
+        const data = {
+          code: this.couponCode,
+        };
+        this.$http
+          .post(`${VITE_URL}/api/${VITE_PATH}/coupon`, { data })
+          .then((res) => {
+            Toast.fire({
+              icon: 'success',
+              title: res.data.message,
+              width: 250,
+            });
+            this.getCart();
+          })
+          .catch((err) => {
+            Toast.fire({
+              icon: 'error',
+              title: err.response.data.message,
+              width: 250,
+            });
+          });
+      },
       onSubmit() {
         if (this.cartsTotal.carts.length) {
           this.loading();
@@ -206,7 +247,7 @@
         return phoneNumber.test(value) ? true : '需為正確的手機號碼格式';
       },
       ...mapActions(loadingStore, ['loading']),
-      ...mapActions(cartsStore, ['addToCart', 'getCart', 'removeCart', 'removeCartsAll', 'setCartQty']),
+      ...mapActions(cartsStore, ['addToCart', 'getCart', 'removeCart', 'confirmRemove', 'removeCartsAll', 'setCartQty']),
     },
     computed: {
       ...mapState(cartsStore, ['cartsTotal', 'cartsTotalNum', 'shipping']),
