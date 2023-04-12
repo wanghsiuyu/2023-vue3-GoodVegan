@@ -32,7 +32,7 @@
         <div v-if="!order.is_paid" class="card-body">
           <h2 class="fs-5 fs-lg-4 mb-4">訂單連絡資訊</h2>
           <form @submit.prevent="payOrder(order.id)">
-            <table class="table align-middle bg-primary-light">
+            <table class="table align-middle bg-primary-light" style="table-layout: fixed">
               <tbody>
                 <tr>
                   <td class="p-md-3 border-0">付款狀態</td>
