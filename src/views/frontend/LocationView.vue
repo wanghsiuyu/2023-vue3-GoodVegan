@@ -19,7 +19,14 @@
       <div class="row justify-content-center my-4 my-lg-17">
         <div class="col-lg-6" data-aos="fade-down">
           <div class="mb-4 mb-lg-0">
-            <img src="@/assets/image/store.png" alt="store" class="img-fluid w-100 h-100 object-fit-cover" />
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.1736935595773!2d120.17949669414736!3d23.01739387434223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e77637a953ce7%3A0x5932de1ec2587f13!2z5qiC5rS76Lev!5e0!3m2!1szh-TW!2stw!4v1678418669447!5m2!1szh-TW!2stw"
+              width="100%"
+              height="240"
+              style="border: 0"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
         <div class="col-lg-4" data-aos="fade-down">

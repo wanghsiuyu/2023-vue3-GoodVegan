@@ -62,3 +62,9 @@
     }
   }
 }
+@mixin line-clamp($num) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $num; /*調整行數*/
+  overflow: hidden;
+}

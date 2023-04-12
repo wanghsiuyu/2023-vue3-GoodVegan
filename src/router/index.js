@@ -3,18 +3,12 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   linkActiveClass: 'active',
-  // linkExactActiveClass: 'exact-active',
   scrollBehavior(to) {
     if (to.hash) {
       return {
         el: to.hash,
       };
     }
-    // if (to.fullPath.match('#qa')) {
-    //   return {
-    //     top: 3000,
-    //   };
-    // }
     return {
       top: 0,
     };
@@ -22,48 +16,56 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: () => import('../views/frontend/FrontLayout.vue'),
+      component: () => import('@/views/frontend/FrontLayout.vue'),
       children: [
         {
           path: '',
-          component: () => import('../views/frontend/HomeView.vue'),
+          component: () => import('@/views/frontend/HomeView.vue'),
         },
         {
           path: 'about',
           name: 'about',
-          component: () => import('../views/frontend/AboutView.vue'),
+          component: () => import('@/views/frontend/AboutView.vue'),
         },
         {
           path: 'products',
-          component: () => import('../views/frontend/ProductsView.vue'),
+          component: () => import('@/views/frontend/ProductsView.vue'),
         },
         {
           path: 'product/:id',
-          component: () => import('../views/frontend/ProductDetail.vue'),
+          component: () => import('@/views/frontend/ProductDetail.vue'),
         },
         {
           path: 'order',
-          component: () => import('../views/frontend/OrderView.vue'),
+          component: () => import('@/views/frontend/OrderView.vue'),
           children: [
             {
               path: 'info',
-              component: () => import('../views/frontend/OrderInfo.vue'),
+              component: () => import('@/views/frontend/OrderInfo.vue'),
             },
             {
               path: 'checkout/:orderId',
-              component: () => import('../views/frontend/OrderCheckout.vue'),
+              component: () => import('@/views/frontend/OrderCheckout.vue'),
             },
           ],
         },
         {
+          path: 'blogs',
+          component: () => import('@/views/frontend/BlogsView.vue'),
+        },
+        {
+          path: 'blogs/:id',
+          component: () => import('@/views/frontend/BlogDetail.vue'),
+        },
+        {
           path: 'location',
-          component: () => import('../views/frontend/LocationView.vue'),
+          component: () => import('@/views/frontend/LocationView.vue'),
         },
       ],
     },
     {
       path: '/login',
-      component: () => import('../views/admin/AdminLogin.vue'),
+      component: () => import('@/views/admin/AdminLogin.vue'),
     },
     {
       path: '/admin',

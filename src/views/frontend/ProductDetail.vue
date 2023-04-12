@@ -6,8 +6,8 @@
         <div class="d-lg-none">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-5">
-              <li class="breadcrumb-item"><RouterLink to="/" class="green">首頁</RouterLink></li>
-              <li class="breadcrumb-item"><RouterLink to="/products" class="green">線上訂餐</RouterLink></li>
+              <li class="breadcrumb-item"><RouterLink to="/">首頁</RouterLink></li>
+              <li class="breadcrumb-item"><RouterLink to="/products">線上訂餐</RouterLink></li>
               <li class="breadcrumb-item active" aria-current="page">{{ product.selectCategories }}</li>
             </ol>
           </nav>
@@ -22,8 +22,8 @@
         <div class="d-none d-lg-block">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-5">
-              <li class="breadcrumb-item"><RouterLink to="/" class="green">首頁</RouterLink></li>
-              <li class="breadcrumb-item"><RouterLink to="/products" class="green">線上訂餐</RouterLink></li>
+              <li class="breadcrumb-item"><RouterLink to="/">首頁</RouterLink></li>
+              <li class="breadcrumb-item"><RouterLink to="/products">線上訂餐</RouterLink></li>
               <li class="breadcrumb-item active" aria-current="page">{{ product.selectCategories }}</li>
             </ol>
           </nav>

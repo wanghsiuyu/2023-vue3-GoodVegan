@@ -193,10 +193,7 @@
 
 <style lang="scss">
   .line-clamp {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2; /*調整行數*/
-    overflow: hidden;
+    @include line-clamp(2);
   }
   .swiper-pagination-bullet {
     width: 8px;

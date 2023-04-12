@@ -80,7 +80,6 @@
         tempArticle: {},
         create_at: '',
         editor: ClassicEditor,
-        editorData: '',
         editorConfig: {
           toolbar: ['heading', '|', 'bold', 'italic', 'link'],
         },

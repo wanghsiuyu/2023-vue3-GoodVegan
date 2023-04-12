@@ -12,7 +12,7 @@
   <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb mb-8 mb-lg-20">
-        <li class="breadcrumb-item"><RouterLink to="/" class="green">首頁</RouterLink></li>
+        <li class="breadcrumb-item"><RouterLink to="/">首頁</RouterLink></li>
         <li class="breadcrumb-item active" aria-current="page">關於我們</li>
       </ol>
     </nav>
@@ -87,11 +87,11 @@
       <div class="text-center">
         <h2 class="block-title position-relative fs-3 fs-lg-2 fw-lg-bold mb-8 mb-lg-15">我們是誰</h2>
       </div>
-      <div class="row flex-lg-row-reverse justify-content-between mb-8 mb-lg-20">
+      <div class="row flex-lg-row-reverse justify-content-between mb-4 mb-lg-17">
         <div class="col-lg-6">
           <figure class="figure" data-aos="fade-down" data-aos-delay="800">
             <img src="@/assets/image/founders.png" class="figure-img img-fluid" alt="founders" />
-            <figcaption class="figure-caption text-center">我們的創辦人 Lisa、Gordon 和 Brian</figcaption>
+            <figcaption class="figure-caption text-center">我們是好蔬房的創辦人 Lisa、Gordon 和 Brian</figcaption>
           </figure>
         </div>
         <div class="col-lg-5">
@@ -101,10 +101,19 @@
                 我們是好蔬房的三位創辦人 Lisa、Gordon 和 Brian，
                 本身都是純素愛好者，過去身為上班族的我們因為找不到滿意的純素外食，通常都是自己準備便當居多，我們深知要準備純素料理對一般忙碌的上班族而言相當不易，許多人因此放棄了純素飲食，這是相當可惜的。
               </p>
-              <p data-aos="fade-up" data-aos-delay="100">
-                我們是在一次的純素社群聚會中認識後，三人一拍即合，因此萌生了一起創業的念頭，希望能為忙碌的現代人提供純素、美味又快速的料理，這就是好蔬房創立的開始。我們對於全植物飲食和環保議題充滿熱情，致力於將食物最根本的養分和美味呈現給大家，期待能在好蔬房與大家見面喔！
-              </p>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-between mb-8 mb-lg-20">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <img src="@/assets/image/store.png" alt="vegan food" class="img-fluid object-fit-cover" data-aos="fade-down" width="600" height="400" />
+        </div>
+        <div class="col-lg-5">
+          <div class="d-flex align-items-center h-100">
+            <p class="fs-6 fs-lg-5 text-justify" data-aos="fade-up">
+              我們是在一次的純素社群聚會中認識後，三人一拍即合，因此萌生了一起創業的念頭，希望能為忙碌的現代人提供純素、美味又快速的料理，這就是好蔬房創立的開始。我們對於全植物飲食和環保議題充滿熱情，致力於將食物最根本的養分和美味呈現給大家，期待能在好蔬房與大家見面喔！
+            </p>
           </div>
         </div>
       </div>

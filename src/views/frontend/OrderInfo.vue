@@ -62,7 +62,6 @@
           <label class="form-label">結帳輸入 <span class="text-primary fw-bold">vegan888</span> 即享有八八折優惠</label>
           <button type="button" class="btn btn-outline-gray-dark btn-sm py-0 mb-2 flex-shrink-0" style="font-size: 12px" @click="copyText">複製</button>
         </div>
-
         <div class="input-group input-group-sm mb-3">
           <input type="text" class="form-control" placeholder="請輸入優惠碼" aria-label="請輸入優惠碼" :value="couponCode" aria-describedby="button-addon2" />
           <button class="btn btn-outline-primary" type="button" id="button-addon2" @click="addCoupon">套用</button>
@@ -100,22 +99,22 @@
               </div>
               <div class="mb-4">
                 <label for="phone" class="form-label">手機<span class="text-danger">*</span></label>
-                <v-field id="phone" name="電話" type="tel" class="form-control" :class="{ 'is-invalid': errors['電話'] }" placeholder="0912345678" :rules="isPhone" v-model="user.tel"></v-field>
-                <error-message name="電話" class="invalid-feedback"></error-message>
+                <v-field id="phone" name="手機" type="tel" class="form-control" :class="{ 'is-invalid': errors['手機'] }" placeholder="0912345678" :rules="isPhone" v-model="user.tel"></v-field>
+                <error-message name="手機" class="invalid-feedback"></error-message>
               </div>
               <div class="mb-3">
                 <label for="email" class="form-label">信箱<span class="text-danger">*</span></label>
                 <v-field
                   id="email"
-                  name="email"
+                  name="信箱"
                   type="email"
                   class="form-control"
-                  :class="{ 'is-invalid': errors['email'] }"
+                  :class="{ 'is-invalid': errors['信箱'] }"
                   placeholder="name@email.com"
                   rules="email|required"
                   v-model="user.email"
                 ></v-field>
-                <error-message name="email" class="invalid-feedback"></error-message>
+                <error-message name="信箱" class="invalid-feedback"></error-message>
               </div>
               <div class="form-check mb-4">
                 <input class="form-check-input" type="checkbox" value="" id="subscribe" checked />

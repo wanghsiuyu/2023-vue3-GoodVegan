@@ -30,6 +30,9 @@
             <RouterLink to="/products" class="nav-link fs-lg-5 pt-3 mx-5 d-inline-block">線上訂餐</RouterLink>
           </li>
           <li class="nav-item mb-4 mb-lg-0">
+            <RouterLink to="/blogs" class="nav-link fs-lg-5 pt-3 mx-5 d-inline-block">專欄文章</RouterLink>
+          </li>
+          <li class="nav-item mb-4 mb-lg-0">
             <a href="#/#qa" class="nav-link fs-lg-5 pt-3 mx-5 d-inline-block">常見問題</a>
           </li>
           <li class="nav-item mb-4 mb-lg-0">
@@ -53,6 +56,33 @@
   <main>
     <RouterView></RouterView>
   </main>
+  <section>
+    <div class="bg-subscribe">
+      <div class="container py-12">
+        <div class="row">
+          <div class="col-lg-4">
+            <v-form v-slot="{ errors }" @submit="subscribe" ref="form" class="text-center text-lg-start px-5 px-lg-0">
+              <label class="form-label"><h5>訂閱我們的文章，獲取最新消息！</h5></label>
+              <div class="input-group mb-3">
+                <v-field
+                  type="email"
+                  class="form-control"
+                  placeholder="請輸入您的信箱"
+                  name="信箱"
+                  :class="{ 'is-invalid': errors['信箱'] }"
+                  rules="email|required"
+                  aria-label="email"
+                  aria-describedby="button-addon2"
+                ></v-field>
+                <button class="btn btn-primary" type="submit" id="button-addon2" :disabled="errors['信箱']">立即訂閱</button>
+                <error-message name="信箱" class="invalid-feedback"></error-message>
+              </div>
+            </v-form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <footer class="bg-white">
     <div class="container py-8">
       <div class="d-lg-flex justify-content-between align-items-center pb-6 pb-lg-4 border-bottom">
@@ -87,6 +117,9 @@
             <RouterLink to="/products" class="fs-lg-5 text-gray-dark me-13 mx-lg-5" exact-active-class="exact-active">線上訂餐</RouterLink>
           </li>
           <li class="nav-item mb-6 mb-lg-0">
+            <RouterLink to="/blogs" class="fs-lg-5 text-gray-dark me-13 mx-lg-5" exact-active-class="exact-active">專欄文章</RouterLink>
+          </li>
+          <li class="nav-item mb-6 mb-lg-0">
             <RouterLink to="/#qa" class="fs-lg-5 text-gray-dark me-13 mx-lg-5" exact-active-class="exact-active">常見問題</RouterLink>
           </li>
           <li class="nav-item mb-6 mb-lg-0">
@@ -118,6 +151,7 @@
   import { mapState, mapActions } from 'pinia';
   import cartsStore from '@/store/cartsStore.js';
   import CartOffcanvas from '@/components/frontend/CartOffcanvas.vue';
+  import Toast from '@/mixins/toast.js';
   export default {
     components: {
       RouterLink,
@@ -134,9 +168,17 @@
         const navbarCollapse = document.querySelector('.navbar-collapse');
         navLink.forEach((item) => {
           item.addEventListener('click', () => {
-            navbarCollapse.classList.toggle('show');
+            navbarCollapse.classList.remove('show');
           });
         });
+      },
+      subscribe() {
+        Toast.fire({
+          icon: 'success',
+          title: '您已成功提交資訊。感謝您的訂閱！',
+          width: 450,
+        });
+        this.$refs.form.resetForm();
       },
     },
     computed: {
@@ -165,5 +207,17 @@
   }
   .nav-item .router-link-exact-active {
     border-bottom: 4px solid #a8cf45;
+  }
+  .bg-subscribe {
+    background-image: url('@/assets/image/bg-subscribe-s.png');
+    background-position: top;
+    background-size: cover;
+    background-color: rgba(221, 222, 220, 0.57);
+    background-blend-mode: multiply;
+    @include mobile() {
+      background-image: url('@/assets/image/bg-subscribe.jpg');
+      background-position: center;
+      background-attachment: fixed;
+    }
   }
 </style>

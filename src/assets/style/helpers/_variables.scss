@@ -659,7 +659,7 @@ $legend-font-weight: null !default;
 
 $dt-font-weight: $font-weight-bold !default;
 
-$list-inline-padding: 0.5rem !default;
+$list-inline-padding: 1rem; //0.5rem !default;
 
 $mark-padding: 0.1875em !default;
 $mark-bg: $yellow-100 !default;
@@ -1206,7 +1206,7 @@ $pagination-border-color: none; //$gray-300 !default;
 
 $pagination-focus-color: var(--#{$prefix}link-hover-color) !default;
 $pagination-focus-bg: $gray-200 !default;
-$pagination-focus-box-shadow: $input-btn-focus-box-shadow !default;
+$pagination-focus-box-shadow: transparent; //$input-btn-focus-box-shadow !default;
 $pagination-focus-outline: 0 !default;
 
 $pagination-hover-color: var(--#{$prefix}link-hover-color) !default;
@@ -1217,8 +1217,8 @@ $pagination-active-color: $component-active-color !default;
 $pagination-active-bg: $component-active-bg !default;
 $pagination-active-border-color: $pagination-active-bg !default;
 
-$pagination-disabled-color: $gray-600 !default;
-$pagination-disabled-bg: $white !default;
+$pagination-disabled-color: $gray-500; //$gray-600 !default;
+$pagination-disabled-bg: $gray-100; //$white !default;
 $pagination-disabled-border-color: $gray-300 !default;
 
 $pagination-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;

@@ -11,14 +11,14 @@
   <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb mb-5">
-        <li class="breadcrumb-item"><RouterLink to="/" class="green">首頁</RouterLink></li>
+        <li class="breadcrumb-item"><RouterLink to="/">首頁</RouterLink></li>
         <li class="breadcrumb-item active" aria-current="page">線上訂餐</li>
       </ol>
     </nav>
-    <section class="row justify-content-center mb-5">
+    <section class="row justify-content-center mb-10">
       <div class="col-12">
         <!-- 產品 nav-tabs-->
-        <ul class="nav sticky-top bg-light mb-6 nav-tab-top" id="myTab" role="tablist">
+        <ul class="nav sticky-top bg-light pb-1 mb-4 nav-tab-top" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
             <a class="nav-link active fs-6 fs-lg-5 text-dark px-1 mx-2" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" href="#" role="tab" aria-controls="all" aria-selected="true">
               全部商品
@@ -43,9 +43,9 @@
         <div class="tab-content" id="myTabContent">
           <!-- 全部商品 -->
           <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-5">
-              <template v-for="product in products" :key="product.id">
-                <div v-if="products" class="col">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-5 mb-5">
+              <template v-for="product in displayedProducts" :key="product.id">
+                <div v-if="products" class="col card-hover">
                   <div class="position-relative hover-show-btn">
                     <div class="hover-img-mask">
                       <RouterLink :to="`/product/${product.id}`" class="hover-img-mask">
@@ -84,12 +84,13 @@
                 </div>
               </template>
             </div>
+            <ProductsPagination></ProductsPagination>
           </div>
           <!-- 超飽足果昔盆、輕食冷盤、湯品、裸食甜點、果昔飲品 -->
           <div v-for="tab in categoriesTabs" :key="tab" class="tab-pane fade" :id="tab[1]" role="tabpanel" :aria-labelledby="`${tab[1]}-tab`">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-5">
               <template v-for="product in products" :key="product.id">
-                <div v-if="product.selectCategories === tab[0]" class="col">
+                <div v-if="product.selectCategories === tab[0]" class="col card-hover">
                   <div class="position-relative hover-show-btn">
                     <div class="hover-img-mask">
                       <RouterLink :to="`/product/${product.id}`" class="hover-img-mask">
@@ -141,6 +142,7 @@
   import productsStore from '@/store/productsStore.js';
   import loadingStore from '@/store/loadingStore.js';
   import cartsStore from '@/store/cartsStore.js';
+  import ProductsPagination from '@/components/frontend/ProductsPagination.vue';
   export default {
     data() {
       return {
@@ -155,13 +157,14 @@
     },
     components: {
       RouterLink,
+      ProductsPagination,
     },
     methods: {
       ...mapActions(productsStore, ['getProducts']),
       ...mapActions(cartsStore, ['addToCart']),
     },
     computed: {
-      ...mapState(productsStore, ['products']),
+      ...mapState(productsStore, ['products', 'displayedProducts']),
       ...mapState(loadingStore, ['loadingStatus']),
     },
     mounted() {
@@ -207,18 +210,18 @@
       width: 90%;
     }
   }
-  .hover-img-mask:before {
-    content: '';
+  .card-hover:hover {
+    img {
+      transform: scale(1.2);
+    }
+  }
+  .hover-img-mask {
     width: 100%;
     height: 100%;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: all 0.4s ease;
+    overflow: hidden;
     border-radius: 8px;
-  }
-  .hover-img-mask:hover:before {
-    background-color: rgba(0, 0, 0, 0.3);
+    img {
+      transition: all 0.8s ease;
+    }
   }
 </style>
